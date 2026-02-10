@@ -336,7 +336,6 @@ public class BasicGameApp implements Runnable, KeyListener {
         int num2 = (int) (Math.random() * 52);
         if (num2!=num){
          cardarray[num2].play(500,610);
-         
             System.out.println(num2);
         }
         int num3 = (int) (Math.random() * 52);
