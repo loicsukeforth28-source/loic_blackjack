@@ -327,21 +327,27 @@ public class BasicGameApp implements Runnable, KeyListener {
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 3 times
 
-        aceOfSpades.play(400, 610);
+       // aceOfSpades.play(400, 610);
 
-        aceOfClubs.play(500, 610);
+      //  aceOfClubs.play(500, 610);
         int num = (int) (Math.random() * 52);
        cardarray[num].play(400,610);
         System.out.println(num);
+        cardSum=cardarray[num].value;
+        System.out.println(cardSum);
         int num2 = (int) (Math.random() * 52);
         if (num2!=num){
          cardarray[num2].play(500,610);
             System.out.println(num2);
+            cardSum=cardarray[num].value+cardarray[num2].value;
+            System.out.println(cardSum);
         }
         int num3 = (int) (Math.random() * 52);
         if (num2!=num3 && num!=num3){
             cardarray[num3].play(600,610);
             System.out.println(num3);
+            cardSum=cardarray[num].value+cardarray[num2].value+cardarray[num3].value;
+            System.out.println(cardSum);
         }
 
     }
