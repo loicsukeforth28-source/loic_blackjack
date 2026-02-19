@@ -228,7 +228,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 //        eightOfHearts = new Card(100,100, 8);
 //        eightOfDiamonds = new Card(100,100, 8);
 //        nineOfSpades = new Card(100,100, 9);
-//        nineOfClubs = new Card(100,100, 9);
+//        nineOfClubs = new Card(100,100, 9)
 //        nineOfHearts = new Card(100,100, 9);
 //        nineOfDiamonds = new Card(100,100, 9);
 //        tenOfSpades = new Card(100,100, 10);
