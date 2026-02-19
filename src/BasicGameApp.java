@@ -90,64 +90,65 @@ public class BasicGameApp implements Runnable, KeyListener {
     Image kingOfDiamondsImage;
     Card aceOfSpades;
     Card aceOfClubs;
-    Card aceOfHearts;
-    Card aceOfDiamonds;
-    Card twoOfClubs;
-    Card twoOfSpades;
-    Card twoOfHearts;
-    Card twoOfDiamonds;
-    Card threeOfClubs;
-    Card threeOfSpades;
-    Card threeOfHearts;
-    Card threeOfDiamonds;
-    Card fourOfClubs;
-    Card fourOfSpades;
-    Card fourOfHearts;
-    Card fourOfDiamonds;
-    Card fiveOfClubs;
-    Card fiveOfHearts;
-    Card fiveOfDiamonds;
-    Card fiveOfSpades;
-    Card sixOfSpades;
-    Card sixOfClubs;
-    Card sixOfHearts;
-    Card sixOfDiamonds;
-    Card sevenOfSpades;
-    Card sevenOfClubs;
-    Card sevenOfHearts;
-    Card sevenOfDiamonds;
-    Card eightOfSpades;
-    Card eightOfClubs;
-    Card eightOfHearts;
-    Card eightOfDiamonds;
-    Card nineOfSpades;
-    Card nineOfClubs;
-    Card nineOfHearts;
-    Card nineOfDiamonds;
-    Card tenOfSpades;
-    Card tenOfClubs;
-    Card tenOfHearts;
-    Card tenOfDiamonds;
-    Card jackOfSpades;
-    Card jackOfClubs;
-    Card jackOfHearts;
-    Card jackOfDiamonds;
-    Card queenOfSpades;
-    Card queenOfClubs;
-    Card queenOfHearts;
-    Card queenOfDiamonds;
-    Card kingOfSpades;
-    Card kingOfClubs;
-    Card kingOfHearts;
-    Card kingOfDiamonds;
+//    Card aceOfHearts;
+//    Card aceOfDiamonds;
+//    Card twoOfClubs;
+//    Card twoOfSpades;
+//    Card twoOfHearts;
+//    Card twoOfDiamonds;
+//    Card threeOfClubs;
+//    Card threeOfSpades;
+//    Card threeOfHearts;
+//    Card threeOfDiamonds;
+//    Card fourOfClubs;
+//    Card fourOfSpades;
+//    Card fourOfHearts;
+//    Card fourOfDiamonds;
+//    Card fiveOfClubs;
+//    Card fiveOfHearts;
+//    Card fiveOfDiamonds;
+//    Card fiveOfSpades;
+//    Card sixOfSpades;
+//    Card sixOfClubs;
+//    Card sixOfHearts;
+//    Card sixOfDiamonds;
+//    Card sevenOfSpades;
+//    Card sevenOfClubs;
+//    Card sevenOfHearts;
+//    Card sevenOfDiamonds;
+//    Card eightOfSpades;
+//    Card eightOfClubs;
+//    Card eightOfHearts;
+//    Card eightOfDiamonds;
+//    Card nineOfSpades;
+//    Card nineOfClubs;
+//    Card nineOfHearts;
+//    Card nineOfDiamonds;
+//    Card tenOfSpades;
+//    Card tenOfClubs;
+//    Card tenOfHearts;
+//    Card tenOfDiamonds;
+//    Card jackOfSpades;
+//    Card jackOfClubs;
+//    Card jackOfHearts;
+//    Card jackOfDiamonds;
+//    Card queenOfSpades;
+//    Card queenOfClubs;
+//    Card queenOfHearts;
+//    Card queenOfDiamonds;
+//    Card kingOfSpades;
+//    Card kingOfClubs;
+//    Card kingOfHearts;
+//    Card kingOfDiamonds;
 
 
     public int cardSum;
     public boolean win;
     int firstXpos;
     Card [] cardarray;
-
-
+    int num;
+    int num2;
+    int num3;
 
     // Main method definition
     // This is the code that runs first and automatically
@@ -193,58 +194,59 @@ public class BasicGameApp implements Runnable, KeyListener {
         for (int c=36; c<52; c++){
             cardarray[c] = new Card(100,100,10);
         }
+        System.out.println(cardarray);
         aceOfSpades = new Card(100,100, 1);
-        aceOfClubs = new Card(100,100, 1);
-        aceOfHearts = new Card(100,100, 1);
-        aceOfDiamonds = new Card(100,100, 1);
-        twoOfSpades = new Card(100,100, 2);
-        twoOfClubs = new Card(100,100, 2);
-        twoOfHearts = new Card(100,100, 2);
-        twoOfDiamonds = new Card(100,100, 2);
-        threeOfSpades = new Card(100,100, 3);
-        threeOfClubs = new Card(100,100, 3);
-        threeOfHearts = new Card(100,100, 3);
-        threeOfDiamonds = new Card(100,100, 3);
-        fourOfSpades = new Card(100,100, 4);
-        fourOfClubs = new Card(100,100, 4);
-        fourOfHearts = new Card(100,100, 4);
-        fourOfDiamonds = new Card(100,100, 4);
-        fiveOfSpades = new Card(100,100, 5);
-        fiveOfClubs = new Card(100,100, 5);
-        fiveOfHearts = new Card(100,100, 5);
-        fiveOfDiamonds = new Card(100,100, 5);
-        sixOfSpades = new Card(100,100, 6);
-        sixOfClubs = new Card(100,100, 6);
-        sixOfHearts = new Card(100,100, 6);
-        sixOfDiamonds = new Card(100,100, 6);
-        sevenOfSpades = new Card(100,100, 7);
-        sevenOfClubs = new Card(100,100, 7);
-        sevenOfHearts = new Card(100,100, 7);
-        sevenOfDiamonds = new Card(100,100, 7);
-        eightOfSpades = new Card(100,100, 8);
-        eightOfClubs = new Card(100,100, 8);
-        eightOfHearts = new Card(100,100, 8);
-        eightOfDiamonds = new Card(100,100, 8);
-        nineOfSpades = new Card(100,100, 9);
-        nineOfClubs = new Card(100,100, 9);
-        nineOfHearts = new Card(100,100, 9);
-        nineOfDiamonds = new Card(100,100, 9);
-        tenOfSpades = new Card(100,100, 10);
-        tenOfClubs = new Card(100,100, 10);
-        tenOfHearts = new Card(100,100, 10);
-        tenOfDiamonds = new Card(100,100, 10);
-        jackOfSpades = new Card(100,100, 10);
-        jackOfClubs = new Card(100,100, 10);
-        jackOfHearts = new Card(100,100, 10);
-        jackOfDiamonds = new Card(100,100, 10);
-        queenOfSpades = new Card(100,100, 10);
-        queenOfClubs = new Card(100,100, 10);
-        queenOfHearts = new Card(100,100, 10);
-        queenOfDiamonds = new Card(100,100, 10);
-        kingOfSpades = new Card(100,100, 10);
-        kingOfClubs = new Card(100,100, 10);
-        kingOfHearts = new Card(100,100, 10);
-        kingOfDiamonds = new Card(100,100, 10);
+       aceOfClubs = new Card(100,100, 1);
+//        aceOfHearts = new Card(100,100, 1);
+//        aceOfDiamonds = new Card(100,100, 1);
+//        twoOfSpades = new Card(100,100, 2);
+//        twoOfClubs = new Card(100,100, 2);
+//        twoOfHearts = new Card(100,100, 2);
+//        twoOfDiamonds = new Card(100,100, 2);
+//        threeOfSpades = new Card(100,100, 3);
+//        threeOfClubs = new Card(100,100, 3);
+//        threeOfHearts = new Card(100,100, 3);
+//        threeOfDiamonds = new Card(100,100, 3);
+//        fourOfSpades = new Card(100,100, 4);
+//        fourOfClubs = new Card(100,100, 4);
+//        fourOfHearts = new Card(100,100, 4);
+//        fourOfDiamonds = new Card(100,100, 4);
+//        fiveOfSpades = new Card(100,100, 5);
+//        fiveOfClubs = new Card(100,100, 5);
+//        fiveOfHearts = new Card(100,100, 5);
+//        fiveOfDiamonds = new Card(100,100, 5);
+//        sixOfSpades = new Card(100,100, 6);
+//        sixOfClubs = new Card(100,100, 6);
+//        sixOfHearts = new Card(100,100, 6);
+//        sixOfDiamonds = new Card(100,100, 6);
+//        sevenOfSpades = new Card(100,100, 7);
+//        sevenOfClubs = new Card(100,100, 7);
+//        sevenOfHearts = new Card(100,100, 7);
+//        sevenOfDiamonds = new Card(100,100, 7);
+//        eightOfSpades = new Card(100,100, 8);
+//        eightOfClubs = new Card(100,100, 8);
+//        eightOfHearts = new Card(100,100, 8);
+//        eightOfDiamonds = new Card(100,100, 8);
+//        nineOfSpades = new Card(100,100, 9);
+//        nineOfClubs = new Card(100,100, 9);
+//        nineOfHearts = new Card(100,100, 9);
+//        nineOfDiamonds = new Card(100,100, 9);
+//        tenOfSpades = new Card(100,100, 10);
+//        tenOfClubs = new Card(100,100, 10);
+//        tenOfHearts = new Card(100,100, 10);
+//        tenOfDiamonds = new Card(100,100, 10);
+//        jackOfSpades = new Card(100,100, 10);
+//        jackOfClubs = new Card(100,100, 10);
+//        jackOfHearts = new Card(100,100, 10);
+//        jackOfDiamonds = new Card(100,100, 10);
+//        queenOfSpades = new Card(100,100, 10);
+//        queenOfClubs = new Card(100,100, 10);
+//        queenOfHearts = new Card(100,100, 10);
+//        queenOfDiamonds = new Card(100,100, 10);
+//        kingOfSpades = new Card(100,100, 10);
+//        kingOfClubs = new Card(100,100, 10);
+//        kingOfHearts = new Card(100,100, 10);
+//        kingOfDiamonds = new Card(100,100, 10);
 
 
 
@@ -325,24 +327,24 @@ public class BasicGameApp implements Runnable, KeyListener {
     }
 
     public void moveThings() {
-// there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 3 times
+// there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
 
        // aceOfSpades.play(400, 610);
 
       //  aceOfClubs.play(500, 610);
-        int num = (int) (Math.random() * 52);
+        num = (int) (Math.random() * 52);
        cardarray[num].play(400,610);
         System.out.println(num);
         cardSum=cardarray[num].value;
         System.out.println(cardSum);
-        int num2 = (int) (Math.random() * 52);
+         num2 = (int) (Math.random() * 52);
         if (num2!=num){
          cardarray[num2].play(500,610);
             System.out.println(num2);
             cardSum=cardarray[num].value+cardarray[num2].value;
             System.out.println(cardSum);
         }
-        int num3 = (int) (Math.random() * 52);
+        num3 = (int) (Math.random() * 52);
         if (num2!=num3 && num!=num3){
             cardarray[num3].play(600,610);
             System.out.println(num3);
@@ -367,56 +369,65 @@ public class BasicGameApp implements Runnable, KeyListener {
         g.setColor(new Color(255,255,255));
         g.fillRect(aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height+3);
         g.drawImage(aceOfClubsImage, aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height, null);
-        for (int c=0; c<4; c++){
-            cardarray[c] = new Card(100,100,1);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-          //  g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=4; c<8; c++){
-            cardarray[c] = new Card(100,100,2);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-          //  g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=8; c<12; c++){
-            cardarray[c] = new Card(100,100,3);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-         //   g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=12; c<16; c++){
-            cardarray[c] = new Card(100,100,4);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-        //    g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=16; c<20; c++){
-            cardarray[c] = new Card(100,100,5);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-         //   g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=20; c<24; c++){
-            cardarray[c] = new Card(100,100,6);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-           // g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=24; c<28; c++){
-            cardarray[c] = new Card(100,100,7);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-           // g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=28; c<32; c++){
-            cardarray[c] = new Card(100,100,8);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-           // g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=32; c<36; c++){
-            cardarray[c] = new Card(100,100,9);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-           // g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
-        for (int c=36; c<52; c++){
-            cardarray[c] = new Card(100,100,10);
-            g.fillRect(cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height+3);
-           // g.drawImage(Image, cardarray[c].xpos,cardarray[c].ypos, cardarray[c].width, cardarray[c].height, null);
-        }
+
+            g.fillRect(cardarray[num].xpos,cardarray[num].ypos, cardarray[num].width, cardarray[num].height+3);
+        g.fillRect(cardarray[num2].xpos,cardarray[num2].ypos, cardarray[num2].width, cardarray[num2].height+3);
+        g.fillRect(cardarray[num3].xpos,cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height+3);
+            g.drawImage(aceOfHeartsImage, cardarray[0].xpos,cardarray[0].ypos, cardarray[0].width, cardarray[0].height, null);
+           g.drawImage(aceOfSpadesImage, cardarray[1].xpos,cardarray[1].ypos, cardarray[1].width, cardarray[1].height, null);
+            g.drawImage(aceOfClubsImage, cardarray[2].xpos,cardarray[2].ypos, cardarray[2].width, cardarray[2].height, null);
+            g.drawImage(aceOfDiamondsImage, cardarray[3].xpos,cardarray[3].ypos, cardarray[3].width, cardarray[3].height, null);
+            g.drawImage(twoOfSpadesImage, cardarray[4].xpos,cardarray[4].ypos, cardarray[4].width, cardarray[4].height, null);
+            g.drawImage(twoOfClubsImage, cardarray[5].xpos,cardarray[5].ypos, cardarray[5].width, cardarray[5].height, null);
+            g.drawImage(twoOfDiamondsImage, cardarray[6].xpos,cardarray[6].ypos, cardarray[6].width, cardarray[6].height, null);
+            g.drawImage(twoOfHeartsImage, cardarray[7].xpos,cardarray[7].ypos, cardarray[7].width, cardarray[7].height, null);
+        g.drawImage(threeOfSpadesImage, cardarray[8].xpos,cardarray[8].ypos, cardarray[8].width, cardarray[8].height, null);
+        g.drawImage(threeOfClubsImage, cardarray[9].xpos,cardarray[9].ypos, cardarray[9].width, cardarray[9].height, null);
+        g.drawImage(threeOfDiamondsImage, cardarray[10].xpos,cardarray[10].ypos, cardarray[10].width, cardarray[10].height, null);
+        g.drawImage(threeOfHeartsImage, cardarray[11].xpos,cardarray[11].ypos, cardarray[11].width, cardarray[11].height, null);
+        g.drawImage(fourOfClubsImage, cardarray[12].xpos,cardarray[12].ypos, cardarray[12].width, cardarray[12].height, null);
+        g.drawImage(fourOfDiamondsImage, cardarray[13].xpos,cardarray[13].ypos, cardarray[13].width, cardarray[13].height, null);
+        g.drawImage(fourOfSpadesImage, cardarray[14].xpos,cardarray[14].ypos, cardarray[14].width, cardarray[14].height, null);
+        g.drawImage(fourOfHeartsImage, cardarray[15].xpos,cardarray[15].ypos, cardarray[15].width, cardarray[15].height, null);
+        g.drawImage(fiveOfSpadesImage, cardarray[16].xpos,cardarray[16].ypos, cardarray[16].width, cardarray[16].height, null);
+        g.drawImage(fiveOfClubsImage, cardarray[17].xpos,cardarray[17].ypos, cardarray[17].width, cardarray[17].height, null);
+        g.drawImage(fiveOfDiamondsImage, cardarray[18].xpos,cardarray[18].ypos, cardarray[18].width, cardarray[18].height, null);
+        g.drawImage(fiveOfHeartsImage, cardarray[19].xpos,cardarray[19].ypos, cardarray[19].width, cardarray[19].height, null);
+        g.drawImage(sixOfClubsImage, cardarray[20].xpos,cardarray[20].ypos, cardarray[20].width, cardarray[20].height, null);
+        g.drawImage(sixOfDiamondsImage, cardarray[21].xpos,cardarray[21].ypos, cardarray[21].width, cardarray[21].height, null);
+        g.drawImage(sixOfHeartsImage, cardarray[22].xpos,cardarray[22].ypos, cardarray[22].width, cardarray[22].height, null);
+        g.drawImage(sixOfSpadesImage, cardarray[23].xpos,cardarray[23].ypos, cardarray[23].width, cardarray[23].height, null);
+        g.drawImage(sevenOfSpadesImage, cardarray[24].xpos,cardarray[24].ypos, cardarray[24].width, cardarray[24].height, null);
+        g.drawImage(sevenOfClubsImage, cardarray[25].xpos,cardarray[25].ypos, cardarray[25].width, cardarray[25].height, null);
+        g.drawImage(sevenOfDiamondsImage, cardarray[26].xpos,cardarray[26].ypos, cardarray[26].width, cardarray[26].height, null);
+        g.drawImage(sevenOfHeartsImage, cardarray[27].xpos,cardarray[27].ypos, cardarray[27].width, cardarray[27].height, null);
+        g.drawImage(eightOfClubsImage, cardarray[28].xpos,cardarray[28].ypos, cardarray[28].width, cardarray[28].height, null);
+        g.drawImage(eightOfDiamondsImage, cardarray[29].xpos,cardarray[29].ypos, cardarray[29].width, cardarray[29].height, null);
+        g.drawImage(eightOfHeartsImage, cardarray[30].xpos,cardarray[30].ypos, cardarray[30].width, cardarray[30].height, null);
+        g.drawImage(eightOfSpadesImage, cardarray[31].xpos,cardarray[31].ypos, cardarray[31].width, cardarray[31].height, null);
+        g.drawImage(nineOfSpadesImage, cardarray[32].xpos,cardarray[32].ypos, cardarray[32].width, cardarray[32].height, null);
+        g.drawImage(nineOfClubsImage, cardarray[33].xpos,cardarray[33].ypos, cardarray[33].width, cardarray[33].height, null);
+        g.drawImage(nineOfDiamondsImage, cardarray[34].xpos,cardarray[34].ypos, cardarray[34].width, cardarray[34].height, null);
+        g.drawImage(nineOfHeartsImage, cardarray[35].xpos,cardarray[35].ypos, cardarray[35].width, cardarray[35].height, null);
+        g.drawImage(tenOfClubsImage, cardarray[36].xpos,cardarray[36].ypos, cardarray[36].width, cardarray[36].height, null);
+        g.drawImage(tenOfDiamondsImage, cardarray[37].xpos,cardarray[37].ypos, cardarray[37].width, cardarray[37].height, null);
+        g.drawImage(tenOfHeartsImage, cardarray[38].xpos,cardarray[38].ypos, cardarray[38].width, cardarray[38].height, null);
+        g.drawImage(tenOfSpadesImage, cardarray[39].xpos,cardarray[39].ypos, cardarray[39].width, cardarray[39].height, null);
+        g.drawImage(jackOfSpadesImage, cardarray[40].xpos,cardarray[1].ypos, cardarray[40].width, cardarray[1].height, null);
+        g.drawImage(jackOfClubsImage, cardarray[41].xpos,cardarray[41].ypos, cardarray[41].width, cardarray[41].height, null);
+        g.drawImage(jackOfDiamondsImage, cardarray[42].xpos,cardarray[42].ypos, cardarray[42].width, cardarray[42].height, null);
+        g.drawImage(jackOfHeartsImage, cardarray[43].xpos,cardarray[43].ypos, cardarray[43].width, cardarray[43].height, null);
+        g.drawImage(queenOfClubsImage, cardarray[44].xpos,cardarray[44].ypos, cardarray[44].width, cardarray[44].height, null);
+        g.drawImage(queenOfDiamondsImage, cardarray[45].xpos,cardarray[45].ypos, cardarray[45].width, cardarray[45].height, null);
+        g.drawImage(queenOfHeartsImage, cardarray[46].xpos,cardarray[46].ypos, cardarray[46].width, cardarray[46].height, null);
+        g.drawImage(queenOfSpadesImage, cardarray[47].xpos,cardarray[47].ypos, cardarray[47].width, cardarray[47].height, null);
+        g.drawImage(kingOfSpadesImage, cardarray[48].xpos,cardarray[48].ypos, cardarray[48].width, cardarray[48].height, null);
+        g.drawImage(kingOfClubsImage, cardarray[49].xpos,cardarray[49].ypos, cardarray[49].width, cardarray[49].height, null);
+        g.drawImage(kingOfDiamondsImage, cardarray[50].xpos,cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
+        g.drawImage(kingOfHeartsImage, cardarray[51].xpos,cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
+
+
+
         g.dispose();
         bufferStrategy.show();
     }
