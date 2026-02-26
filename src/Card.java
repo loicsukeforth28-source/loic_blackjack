@@ -12,18 +12,17 @@ public class Card {
     public boolean firstCard;
     public boolean secondCard;
     public boolean thirdCard;
+    boolean Ace11;
 
 
 
 
-    public Card(int pXpos, int pYpos, int pvalue) {
-        xpos = pXpos;
-        ypos = pYpos;
+    public Card( int pvalue) {
         value = pvalue;
         //create a flag to be either 1 or 11
-        if (pvalue == 1){
-            value = 1;
-        }
+       // if (Ace11 = true){
+       //     value = 11;
+      //  }
         width = 60;
         height = 80;
 
