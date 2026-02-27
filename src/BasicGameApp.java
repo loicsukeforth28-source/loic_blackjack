@@ -88,68 +88,23 @@ public class BasicGameApp implements Runnable, KeyListener {
     Image kingOfClubsImage;
     Image kingOfHeartsImage;
     Image kingOfDiamondsImage;
-    Card aceOfSpades;
-    Card aceOfClubs;
-//    Card aceOfHearts;
-//    Card aceOfDiamonds;
-//    Card twoOfClubs;
-//    Card twoOfSpades;
-//    Card twoOfHearts;
-//    Card twoOfDiamonds;
-//    Card threeOfClubs;
-//    Card threeOfSpades;
-//    Card threeOfHearts;
-//    Card threeOfDiamonds;
-//    Card fourOfClubs;
-//    Card fourOfSpades;
-//    Card fourOfHearts;
-//    Card fourOfDiamonds;
-//    Card fiveOfClubs;
-//    Card fiveOfHearts;
-//    Card fiveOfDiamonds;
-//    Card fiveOfSpades;
-//    Card sixOfSpades;
-//    Card sixOfClubs;
-//    Card sixOfHearts;
-//    Card sixOfDiamonds;
-//    Card sevenOfSpades;
-//    Card sevenOfClubs;
-//    Card sevenOfHearts;
-//    Card sevenOfDiamonds;
-//    Card eightOfSpades;
-//    Card eightOfClubs;
-//    Card eightOfHearts;
-//    Card eightOfDiamonds;
-//    Card nineOfSpades;
-//    Card nineOfClubs;
-//    Card nineOfHearts;
-//    Card nineOfDiamonds;
-//    Card tenOfSpades;
-//    Card tenOfClubs;
-//    Card tenOfHearts;
-//    Card tenOfDiamonds;
-//    Card jackOfSpades;
-//    Card jackOfClubs;
-//    Card jackOfHearts;
-//    Card jackOfDiamonds;
-//    Card queenOfSpades;
-//    Card queenOfClubs;
-//    Card queenOfHearts;
-//    Card queenOfDiamonds;
-//    Card kingOfSpades;
-//    Card kingOfClubs;
-//    Card kingOfHearts;
-//    Card kingOfDiamonds;
 
 
     public int cardSum;
+    public int dealerSum;
     public boolean win;
-    int firstXpos;
      Card [] cardarray=new Card[52];
    public int num;
    public int num2;
    public int num3;
-
+   public int num4;
+   public boolean hit1=false;
+    public boolean hit2=false;
+    public boolean hit3=false;
+    public boolean isNum1used=false;
+    public boolean isNum2used=false;
+    public boolean isNum3used=false;
+    public boolean print = false;
     // Main method definition
     // This is the code that runs first and automatically
     public static void main(String[] args) {
@@ -193,114 +148,73 @@ public class BasicGameApp implements Runnable, KeyListener {
         for (int c=36; c<=51; c++){
             cardarray[c] = new Card(10);
         }
-        System.out.println(cardarray);
-        aceOfSpades = new Card(1);
-       aceOfClubs = new Card(1);
-//        aceOfHearts = new Card(100,100, 1);
-//        aceOfDiamonds = new Card(100,100, 1);
-//        twoOfSpades = new Card(100,100, 2);
-//        twoOfClubs = new Card(100,100, 2);
-//        twoOfHearts = new Card(100,100, 2);
-//        twoOfDiamonds = new Card(100,100, 2);
-//        threeOfSpades = new Card(100,100, 3);
-//        threeOfClubs = new Card(100,100, 3);
-//        threeOfHearts = new Card(100,100, 3);
-//        threeOfDiamonds = new Card(100,100, 3);
-//        fourOfSpades = new Card(100,100, 4);
-//        fourOfClubs = new Card(100,100, 4);
-//        fourOfHearts = new Card(100,100, 4);
-//        fourOfDiamonds = new Card(100,100, 4);
-//        fiveOfSpades = new Card(100,100, 5);
-//        fiveOfClubs = new Card(100,100, 5);
-//        fiveOfHearts = new Card(100,100, 5);
-//        fiveOfDiamonds = new Card(100,100, 5);
-//        sixOfSpades = new Card(100,100, 6);
-//        sixOfClubs = new Card(100,100, 6);
-//        sixOfHearts = new Card(100,100, 6);
-//        sixOfDiamonds = new Card(100,100, 6);
-//        sevenOfSpades = new Card(100,100, 7);
-//        sevenOfClubs = new Card(100,100, 7);
-//        sevenOfHearts = new Card(100,100, 7);
-//        sevenOfDiamonds = new Card(100,100, 7);
-//        eightOfSpades = new Card(100,100, 8);
-//        eightOfClubs = new Card(100,100, 8);
-//        eightOfHearts = new Card(100,100, 8);
-//        eightOfDiamonds = new Card(100,100, 8);
-//        nineOfSpades = new Card(100,100, 9);
-//        nineOfClubs = new Card(100,100, 9)
-//        nineOfHearts = new Card(100,100, 9);
-//        nineOfDiamonds = new Card(100,100, 9);
-//        tenOfSpades = new Card(100,100, 10);
-//        tenOfClubs = new Card(100,100, 10);
-//        tenOfHearts = new Card(100,100, 10);
-//        tenOfDiamonds = new Card(100,100, 10);
-//        jackOfSpades = new Card(100,100, 10);
-//        jackOfClubs = new Card(100,100, 10);
-//        jackOfHearts = new Card(100,100, 10);
-//        jackOfDiamonds = new Card(100,100, 10);
-//        queenOfSpades = new Card(100,100, 10);
-//        queenOfClubs = new Card(100,100, 10);
-//        queenOfHearts = new Card(100,100, 10);
-//        queenOfDiamonds = new Card(100,100, 10);
-//        kingOfSpades = new Card(100,100, 10);
-//        kingOfClubs = new Card(100,100, 10);
-//        kingOfHearts = new Card(100,100, 10);
-//        kingOfDiamonds = new Card(100,100, 10);
 
 
 
         aceOfSpadesImage = Toolkit.getDefaultToolkit().getImage("AceSpades.png");
-        aceOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
+        aceOfHeartsImage = Toolkit.getDefaultToolkit().getImage("AceHearts.png");
         aceOfClubsImage = Toolkit.getDefaultToolkit().getImage("AceClubs.png");
-        aceOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        twoOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        twoOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        twoOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        twoOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        threeOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        threeOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        threeOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        threeOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fourOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fourOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fourOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fourOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fiveOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fiveOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fiveOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        fiveOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sixOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sixOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sixOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sixOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sevenOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sevenOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sevenOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        sevenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        eightOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        eightOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        eightOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        eightOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        nineOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        nineOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        nineOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        nineOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        tenOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        tenOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        tenOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        tenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        jackOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        jackOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        jackOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        jackOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        queenOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        queenOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        queenOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        queenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        kingOfSpadesImage = Toolkit.getDefaultToolkit().getImage(".png");
-        kingOfHeartsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        kingOfClubsImage = Toolkit.getDefaultToolkit().getImage(".png");
-        kingOfDiamondsImage = Toolkit.getDefaultToolkit().getImage(".png");
+        aceOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("AceClubs.png");
+
+        twoOfSpadesImage = Toolkit.getDefaultToolkit().getImage("TwoSpades.png");
+        twoOfHeartsImage = Toolkit.getDefaultToolkit().getImage("TwoHearts.png");
+        twoOfClubsImage = Toolkit.getDefaultToolkit().getImage("TwoClubs.png");
+        twoOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("TwoDiamonds.png");
+
+        threeOfSpadesImage = Toolkit.getDefaultToolkit().getImage("ThreeSpades.png");
+        threeOfHeartsImage = Toolkit.getDefaultToolkit().getImage("ThreeHearts.png");
+        threeOfClubsImage = Toolkit.getDefaultToolkit().getImage("ThreeClubs.png");
+        threeOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("ThreeDiamonds.png");
+
+        fourOfSpadesImage = Toolkit.getDefaultToolkit().getImage("FourSpades.png");
+        fourOfHeartsImage = Toolkit.getDefaultToolkit().getImage("FourHearts.png");
+        fourOfClubsImage = Toolkit.getDefaultToolkit().getImage("FourClubs.png");
+        fourOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("FourDiamonds.png");
+
+        fiveOfSpadesImage = Toolkit.getDefaultToolkit().getImage("FiveSpades.png");
+        fiveOfHeartsImage = Toolkit.getDefaultToolkit().getImage("FiveHearts.png");
+        fiveOfClubsImage = Toolkit.getDefaultToolkit().getImage("FiveClubs.png");
+        fiveOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("FiveDiamonds.png");
+
+        sixOfSpadesImage = Toolkit.getDefaultToolkit().getImage("SixSpades.png");
+        sixOfHeartsImage = Toolkit.getDefaultToolkit().getImage("SixHearts.png");
+        sixOfClubsImage = Toolkit.getDefaultToolkit().getImage("SixClubs.png");
+        sixOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("SixDiamonds.png");
+
+        sevenOfSpadesImage = Toolkit.getDefaultToolkit().getImage("SevenSpades.png");
+        sevenOfHeartsImage = Toolkit.getDefaultToolkit().getImage("SevenHearts.png");
+        sevenOfClubsImage = Toolkit.getDefaultToolkit().getImage("SevenClubs.png");
+        sevenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("SevenDiamonds.png");
+
+        eightOfSpadesImage = Toolkit.getDefaultToolkit().getImage("EightSpades.png");
+        eightOfHeartsImage = Toolkit.getDefaultToolkit().getImage("EightHearts.png");
+        eightOfClubsImage = Toolkit.getDefaultToolkit().getImage("EightClubs.png");
+        eightOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("EightDiamonds.png");
+
+        nineOfSpadesImage = Toolkit.getDefaultToolkit().getImage("NineSpades.png");
+        nineOfHeartsImage = Toolkit.getDefaultToolkit().getImage("NineHearts.png");
+        nineOfClubsImage = Toolkit.getDefaultToolkit().getImage("NineClubs.png");
+        nineOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("NineDiamonds.png");
+
+        tenOfSpadesImage = Toolkit.getDefaultToolkit().getImage("TenSpades.png");
+        tenOfHeartsImage = Toolkit.getDefaultToolkit().getImage("TenHearts.png");
+        tenOfClubsImage = Toolkit.getDefaultToolkit().getImage("TenClubs.png");
+        tenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("TenDiamonds.png");
+
+        jackOfSpadesImage = Toolkit.getDefaultToolkit().getImage("JackSpades.png");
+        jackOfHeartsImage = Toolkit.getDefaultToolkit().getImage("JackHearts.png");
+        jackOfClubsImage = Toolkit.getDefaultToolkit().getImage("JackClubs.png");
+        jackOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("JackDiamonds.png");
+
+        queenOfSpadesImage = Toolkit.getDefaultToolkit().getImage("QueenSpades.png");
+        queenOfHeartsImage = Toolkit.getDefaultToolkit().getImage("QueenHearts.png");
+        queenOfClubsImage = Toolkit.getDefaultToolkit().getImage("QueenClubs.png");
+        queenOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("QueenDiamonds.png");
+
+        kingOfSpadesImage = Toolkit.getDefaultToolkit().getImage("KingSpades.png");
+        kingOfHeartsImage = Toolkit.getDefaultToolkit().getImage("KingHearts.png");
+        kingOfClubsImage = Toolkit.getDefaultToolkit().getImage("KingClubs.png");
+        kingOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("KingDiamonds.png");
         run();
 
     } // end BasicGameApp constructor
@@ -314,12 +228,12 @@ public class BasicGameApp implements Runnable, KeyListener {
     // this is the code that plays the game after you set things up
     public void run() {
         //for the moment we will loop things forever.
-        moveThings();
+      //  moveThings();
         while (true) {
-       //     moveThings();  //move all the game objects
+           moveThings();  //move all the game objects
             render();  // paint the graphics
             pause(30); // sleep for 10 ms
-            if (cardSum == 21) {
+            if (cardSum == 21 || dealerSum<cardSum) {
                 win = true;
             }
         }
@@ -327,30 +241,40 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
-
-       // aceOfSpades.play(400, 610);
-
-      //  aceOfClubs.play(500, 610);
-        num = (int) (Math.random() * 52);
-       cardarray[num].play(400,610);
-        System.out.println(num);
+        if (!isNum1used){
+            num = (int) (Math.random() * 52);
+            isNum1used=true;
+        }
+        cardarray[num].play(425,610);
+        //System.out.println(num);
         cardSum=cardarray[num].value;
-        System.out.println(cardarray[num].value+"="+cardSum);
-         num2 = (int) (Math.random() * 52);
-        if (num2!=num&& cardSum<22){
+   //     System.out.println(cardarray[num].value+"="+cardSum);
+        if (!isNum2used){
+            num2 = (int) (Math.random() * 52);
+            isNum2used=true;
+        }
+        if (num2!=num){
          cardarray[num2].play(500,610);
-            System.out.println(num2);
+         //   System.out.println(num2);
             cardSum=cardarray[num].value+cardarray[num2].value;
-            System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
+    //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
         }
-        num3 = (int) (Math.random() * 52);
-        if (num2!=num3 && num!=num3&& cardSum<22){
-            cardarray[num3].play(600,610);
-            System.out.println(num3);
+        if (!isNum3used){
+            num3 = (int) (Math.random() * 52);
+            isNum3used=true;
+        }
+        if (num2!=num3 && num!=num3&& cardSum<22&&hit1){
+            cardarray[num3].play(575,610);
+         //   System.out.println(num3);
             cardSum=cardarray[num].value+cardarray[num2].value+cardarray[num3].value;
-            System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"+"+cardarray[num3].value+"="+cardSum);
+            if (!print) {
+                if (cardSum > 21) {
+                    System.out.println("you lose haha bozo");
+                }
+                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
+                print = true;
+            }
         }
-
     }
 
 
@@ -365,7 +289,6 @@ public class BasicGameApp implements Runnable, KeyListener {
         g.setColor(new Color(255,255,255));
       //  g.fillRect(aceOfSpades.xpos,aceOfSpades.ypos, aceOfSpades.width, aceOfSpades.height+3);
       //  g.drawImage(aceOfSpadesImage, aceOfSpades.xpos,aceOfSpades.ypos, aceOfSpades.width, aceOfSpades.height, null);
-        g.setColor(new Color(255,255,255));
       //  g.fillRect(aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height+3);
      //   g.drawImage(aceOfClubsImage, aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height, null);
         g.fillRect(cardarray[num].xpos,cardarray[num].ypos, cardarray[num].width, cardarray[num].height+3);
@@ -475,7 +398,15 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if (e.getKeyCode()==49){
+            hit1=true;
+        }
+        if (e.getKeyCode()==50){
+            hit2=true;
+        }
+        if (e.getKeyCode()==51){
+            hit3=true;
+        }
     }
 
 

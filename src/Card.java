@@ -19,12 +19,14 @@ public class Card {
 
     public Card( int pvalue) {
         value = pvalue;
-        //create a flag to be either 1 or 11
-       // if (Ace11 = true){
-       //     value = 11;
-      //  }
+      //  create a flag to be either 1 or 11
+//        if (Ace11 = true&&pvalue=1){
+//            value = 11;
+//        }
         width = 60;
         height = 80;
+        xpos=-100;
+        ypos=-100;
 
     }
     public void play(int pXpos,int pYpos){
