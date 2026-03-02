@@ -99,12 +99,15 @@ public class BasicGameApp implements Runnable, KeyListener {
    public int num3;
    public int num4;
    public boolean hit1=false;
+   public boolean hit1used=false;
     public boolean hit2=false;
     public boolean hit3=false;
     public boolean isNum1used=false;
     public boolean isNum2used=false;
     public boolean isNum3used=false;
+    public boolean isNum4used=false;
     public boolean print = false;
+    public boolean print2 = false;
     // Main method definition
     // This is the code that runs first and automatically
     public static void main(String[] args) {
@@ -233,159 +236,175 @@ public class BasicGameApp implements Runnable, KeyListener {
            moveThings();  //move all the game objects
             render();  // paint the graphics
             pause(30); // sleep for 10 ms
-            if (cardSum == 21 || dealerSum<cardSum) {
+            if (cardSum == 21 && dealerSum<cardSum) {
                 win = true;
+            }
+            if (cardSum==dealerSum){
+
             }
         }
     }
 
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
-        if (!isNum1used){
+        if (!isNum1used) {
             num = (int) (Math.random() * 52);
-            isNum1used=true;
+            isNum1used = true;
         }
-        cardarray[num].play(425,610);
+        cardarray[num].play(425, 610);
         //System.out.println(num);
-        cardSum=cardarray[num].value;
-   //     System.out.println(cardarray[num].value+"="+cardSum);
-        if (!isNum2used){
+        cardSum = cardarray[num].value;
+        //     System.out.println(cardarray[num].value+"="+cardSum);
+        if (!isNum2used) {
             num2 = (int) (Math.random() * 52);
-            isNum2used=true;
+            isNum2used = true;
         }
-        if (num2!=num){
-         cardarray[num2].play(500,610);
-         //   System.out.println(num2);
-            cardSum=cardarray[num].value+cardarray[num2].value;
-    //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
+        if (num2 != num) {
+            cardarray[num2].play(500, 610);
+            //   System.out.println(num2);
+            cardSum = cardarray[num].value + cardarray[num2].value;
+            //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
         }
-        if (!isNum3used){
+        if (!isNum3used) {
             num3 = (int) (Math.random() * 52);
-            isNum3used=true;
+            isNum3used = true;
         }
-        if (num2!=num3 && num!=num3&& cardSum<22&&hit1){
-            cardarray[num3].play(575,610);
-         //   System.out.println(num3);
-            cardSum=cardarray[num].value+cardarray[num2].value+cardarray[num3].value;
+        if (num2 != num3 && num != num3 && cardSum < 22 && hit1) {
+            cardarray[num3].play(575, 610);
+            //   System.out.println(num3);
+            cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
             if (!print) {
                 if (cardSum > 21) {
                     System.out.println("you lose haha bozo");
                 }
                 System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
                 print = true;
+                hit1used=true;
+            }
+        }
+        if (isNum4used) {
+            num4 = (int) (Math.random() * 52);
+            isNum4used = true;
+        }
+        if (num2 != num4 && num != num4 && num3 != num4 && cardSum < 22 && hit2&&hit1used) {
+            cardarray[num4].play(650, 610);
+            cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value;
+            if (!print2) {
+                if (cardSum > 21) {
+                    System.out.println("you lose haha bozo");
+                }
+                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+                print2 = true;
             }
         }
     }
 
+        //Paints things on the screen using bufferStrategy
+        private void render () {
+            Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
+            g.clearRect(0, 0, WIDTH, HEIGHT);
+            g.setColor(new Color(0, 150, 0));
+            g.fillRect(0, 0, WIDTH, HEIGHT);
+            g.setColor(new Color(255, 255, 255));
+            g.fillRect(cardarray[num].xpos, cardarray[num].ypos, cardarray[num].width, cardarray[num].height + 3);
+            g.fillRect(cardarray[num2].xpos, cardarray[num2].ypos, cardarray[num2].width, cardarray[num2].height + 3);
+            g.fillRect(cardarray[num3].xpos, cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height + 3);
+            g.fillRect(cardarray[num4].xpos, cardarray[num4].ypos, cardarray[num4].width, cardarray[num4].height + 3);
+            g.drawImage(aceOfHeartsImage, cardarray[0].xpos, cardarray[0].ypos, cardarray[0].width, cardarray[0].height, null);
+            g.drawImage(aceOfSpadesImage, cardarray[1].xpos, cardarray[1].ypos, cardarray[1].width, cardarray[1].height, null);
+            g.drawImage(aceOfClubsImage, cardarray[2].xpos, cardarray[2].ypos, cardarray[2].width, cardarray[2].height, null);
+            g.drawImage(aceOfDiamondsImage, cardarray[3].xpos, cardarray[3].ypos, cardarray[3].width, cardarray[3].height, null);
+            g.drawImage(twoOfSpadesImage, cardarray[4].xpos, cardarray[4].ypos, cardarray[4].width, cardarray[4].height, null);
+            g.drawImage(twoOfClubsImage, cardarray[5].xpos, cardarray[5].ypos, cardarray[5].width, cardarray[5].height, null);
+            g.drawImage(twoOfDiamondsImage, cardarray[6].xpos, cardarray[6].ypos, cardarray[6].width, cardarray[6].height, null);
+            g.drawImage(twoOfHeartsImage, cardarray[7].xpos, cardarray[7].ypos, cardarray[7].width, cardarray[7].height, null);
+            g.drawImage(threeOfSpadesImage, cardarray[8].xpos, cardarray[8].ypos, cardarray[8].width, cardarray[8].height, null);
+            g.drawImage(threeOfClubsImage, cardarray[9].xpos, cardarray[9].ypos, cardarray[9].width, cardarray[9].height, null);
+            g.drawImage(threeOfDiamondsImage, cardarray[10].xpos, cardarray[10].ypos, cardarray[10].width, cardarray[10].height, null);
+            g.drawImage(threeOfHeartsImage, cardarray[11].xpos, cardarray[11].ypos, cardarray[11].width, cardarray[11].height, null);
+            g.drawImage(fourOfClubsImage, cardarray[12].xpos, cardarray[12].ypos, cardarray[12].width, cardarray[12].height, null);
+            g.drawImage(fourOfDiamondsImage, cardarray[13].xpos, cardarray[13].ypos, cardarray[13].width, cardarray[13].height, null);
+            g.drawImage(fourOfSpadesImage, cardarray[14].xpos, cardarray[14].ypos, cardarray[14].width, cardarray[14].height, null);
+            g.drawImage(fourOfHeartsImage, cardarray[15].xpos, cardarray[15].ypos, cardarray[15].width, cardarray[15].height, null);
+            g.drawImage(fiveOfSpadesImage, cardarray[16].xpos, cardarray[16].ypos, cardarray[16].width, cardarray[16].height, null);
+            g.drawImage(fiveOfClubsImage, cardarray[17].xpos, cardarray[17].ypos, cardarray[17].width, cardarray[17].height, null);
+            g.drawImage(fiveOfDiamondsImage, cardarray[18].xpos, cardarray[18].ypos, cardarray[18].width, cardarray[18].height, null);
+            g.drawImage(fiveOfHeartsImage, cardarray[19].xpos, cardarray[19].ypos, cardarray[19].width, cardarray[19].height, null);
+            g.drawImage(sixOfClubsImage, cardarray[20].xpos, cardarray[20].ypos, cardarray[20].width, cardarray[20].height, null);
+            g.drawImage(sixOfDiamondsImage, cardarray[21].xpos, cardarray[21].ypos, cardarray[21].width, cardarray[21].height, null);
+            g.drawImage(sixOfHeartsImage, cardarray[22].xpos, cardarray[22].ypos, cardarray[22].width, cardarray[22].height, null);
+            g.drawImage(sixOfSpadesImage, cardarray[23].xpos, cardarray[23].ypos, cardarray[23].width, cardarray[23].height, null);
+            g.drawImage(sevenOfSpadesImage, cardarray[24].xpos, cardarray[24].ypos, cardarray[24].width, cardarray[24].height, null);
+            g.drawImage(sevenOfClubsImage, cardarray[25].xpos, cardarray[25].ypos, cardarray[25].width, cardarray[25].height, null);
+            g.drawImage(sevenOfDiamondsImage, cardarray[26].xpos, cardarray[26].ypos, cardarray[26].width, cardarray[26].height, null);
+            g.drawImage(sevenOfHeartsImage, cardarray[27].xpos, cardarray[27].ypos, cardarray[27].width, cardarray[27].height, null);
+            g.drawImage(eightOfClubsImage, cardarray[28].xpos, cardarray[28].ypos, cardarray[28].width, cardarray[28].height, null);
+            g.drawImage(eightOfDiamondsImage, cardarray[29].xpos, cardarray[29].ypos, cardarray[29].width, cardarray[29].height, null);
+            g.drawImage(eightOfHeartsImage, cardarray[30].xpos, cardarray[30].ypos, cardarray[30].width, cardarray[30].height, null);
+            g.drawImage(eightOfSpadesImage, cardarray[31].xpos, cardarray[31].ypos, cardarray[31].width, cardarray[31].height, null);
+            g.drawImage(nineOfSpadesImage, cardarray[32].xpos, cardarray[32].ypos, cardarray[32].width, cardarray[32].height, null);
+            g.drawImage(nineOfClubsImage, cardarray[33].xpos, cardarray[33].ypos, cardarray[33].width, cardarray[33].height, null);
+            g.drawImage(nineOfDiamondsImage, cardarray[34].xpos, cardarray[34].ypos, cardarray[34].width, cardarray[34].height, null);
+            g.drawImage(nineOfHeartsImage, cardarray[35].xpos, cardarray[35].ypos, cardarray[35].width, cardarray[35].height, null);
+            g.drawImage(tenOfClubsImage, cardarray[36].xpos, cardarray[36].ypos, cardarray[36].width, cardarray[36].height, null);
+            g.drawImage(tenOfDiamondsImage, cardarray[37].xpos, cardarray[37].ypos, cardarray[37].width, cardarray[37].height, null);
+            g.drawImage(tenOfHeartsImage, cardarray[38].xpos, cardarray[38].ypos, cardarray[38].width, cardarray[38].height, null);
+            g.drawImage(tenOfSpadesImage, cardarray[39].xpos, cardarray[39].ypos, cardarray[39].width, cardarray[39].height, null);
+            g.drawImage(jackOfSpadesImage, cardarray[40].xpos, cardarray[1].ypos, cardarray[40].width, cardarray[1].height, null);
+            g.drawImage(jackOfClubsImage, cardarray[41].xpos, cardarray[41].ypos, cardarray[41].width, cardarray[41].height, null);
+            g.drawImage(jackOfDiamondsImage, cardarray[42].xpos, cardarray[42].ypos, cardarray[42].width, cardarray[42].height, null);
+            g.drawImage(jackOfHeartsImage, cardarray[43].xpos, cardarray[43].ypos, cardarray[43].width, cardarray[43].height, null);
+            g.drawImage(queenOfClubsImage, cardarray[44].xpos, cardarray[44].ypos, cardarray[44].width, cardarray[44].height, null);
+            g.drawImage(queenOfDiamondsImage, cardarray[45].xpos, cardarray[45].ypos, cardarray[45].width, cardarray[45].height, null);
+            g.drawImage(queenOfHeartsImage, cardarray[46].xpos, cardarray[46].ypos, cardarray[46].width, cardarray[46].height, null);
+            g.drawImage(queenOfSpadesImage, cardarray[47].xpos, cardarray[47].ypos, cardarray[47].width, cardarray[47].height, null);
+            g.drawImage(kingOfSpadesImage, cardarray[48].xpos, cardarray[48].ypos, cardarray[48].width, cardarray[48].height, null);
+            g.drawImage(kingOfClubsImage, cardarray[49].xpos, cardarray[49].ypos, cardarray[49].width, cardarray[49].height, null);
+            g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
+            g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
 
 
-
-    //Paints things on the screen using bufferStrategy
-    private void render() {
-        Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
-        g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setColor(new Color(0,150,0));
-        g.fillRect(0,0, WIDTH, HEIGHT);
-        g.setColor(new Color(255,255,255));
-        g.fillRect(cardarray[num].xpos,cardarray[num].ypos, cardarray[num].width, cardarray[num].height+3);
-        g.fillRect(cardarray[num2].xpos,cardarray[num2].ypos, cardarray[num2].width, cardarray[num2].height+3);
-        g.fillRect(cardarray[num3].xpos,cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height+3);
-        g.drawImage(aceOfHeartsImage, cardarray[0].xpos,cardarray[0].ypos, cardarray[0].width, cardarray[0].height, null);
-        g.drawImage(aceOfSpadesImage, cardarray[1].xpos,cardarray[1].ypos, cardarray[1].width, cardarray[1].height, null);
-        g.drawImage(aceOfClubsImage, cardarray[2].xpos,cardarray[2].ypos, cardarray[2].width, cardarray[2].height, null);
-        g.drawImage(aceOfDiamondsImage, cardarray[3].xpos,cardarray[3].ypos, cardarray[3].width, cardarray[3].height, null);
-        g.drawImage(twoOfSpadesImage, cardarray[4].xpos,cardarray[4].ypos, cardarray[4].width, cardarray[4].height, null);
-        g.drawImage(twoOfClubsImage, cardarray[5].xpos,cardarray[5].ypos, cardarray[5].width, cardarray[5].height, null);
-        g.drawImage(twoOfDiamondsImage, cardarray[6].xpos,cardarray[6].ypos, cardarray[6].width, cardarray[6].height, null);
-        g.drawImage(twoOfHeartsImage, cardarray[7].xpos,cardarray[7].ypos, cardarray[7].width, cardarray[7].height, null);
-        g.drawImage(threeOfSpadesImage, cardarray[8].xpos,cardarray[8].ypos, cardarray[8].width, cardarray[8].height, null);
-        g.drawImage(threeOfClubsImage, cardarray[9].xpos,cardarray[9].ypos, cardarray[9].width, cardarray[9].height, null);
-        g.drawImage(threeOfDiamondsImage, cardarray[10].xpos,cardarray[10].ypos, cardarray[10].width, cardarray[10].height, null);
-        g.drawImage(threeOfHeartsImage, cardarray[11].xpos,cardarray[11].ypos, cardarray[11].width, cardarray[11].height, null);
-        g.drawImage(fourOfClubsImage, cardarray[12].xpos,cardarray[12].ypos, cardarray[12].width, cardarray[12].height, null);
-        g.drawImage(fourOfDiamondsImage, cardarray[13].xpos,cardarray[13].ypos, cardarray[13].width, cardarray[13].height, null);
-        g.drawImage(fourOfSpadesImage, cardarray[14].xpos,cardarray[14].ypos, cardarray[14].width, cardarray[14].height, null);
-        g.drawImage(fourOfHeartsImage, cardarray[15].xpos,cardarray[15].ypos, cardarray[15].width, cardarray[15].height, null);
-        g.drawImage(fiveOfSpadesImage, cardarray[16].xpos,cardarray[16].ypos, cardarray[16].width, cardarray[16].height, null);
-        g.drawImage(fiveOfClubsImage, cardarray[17].xpos,cardarray[17].ypos, cardarray[17].width, cardarray[17].height, null);
-        g.drawImage(fiveOfDiamondsImage, cardarray[18].xpos,cardarray[18].ypos, cardarray[18].width, cardarray[18].height, null);
-        g.drawImage(fiveOfHeartsImage, cardarray[19].xpos,cardarray[19].ypos, cardarray[19].width, cardarray[19].height, null);
-        g.drawImage(sixOfClubsImage, cardarray[20].xpos,cardarray[20].ypos, cardarray[20].width, cardarray[20].height, null);
-        g.drawImage(sixOfDiamondsImage, cardarray[21].xpos,cardarray[21].ypos, cardarray[21].width, cardarray[21].height, null);
-        g.drawImage(sixOfHeartsImage, cardarray[22].xpos,cardarray[22].ypos, cardarray[22].width, cardarray[22].height, null);
-        g.drawImage(sixOfSpadesImage, cardarray[23].xpos,cardarray[23].ypos, cardarray[23].width, cardarray[23].height, null);
-        g.drawImage(sevenOfSpadesImage, cardarray[24].xpos,cardarray[24].ypos, cardarray[24].width, cardarray[24].height, null);
-        g.drawImage(sevenOfClubsImage, cardarray[25].xpos,cardarray[25].ypos, cardarray[25].width, cardarray[25].height, null);
-        g.drawImage(sevenOfDiamondsImage, cardarray[26].xpos,cardarray[26].ypos, cardarray[26].width, cardarray[26].height, null);
-        g.drawImage(sevenOfHeartsImage, cardarray[27].xpos,cardarray[27].ypos, cardarray[27].width, cardarray[27].height, null);
-        g.drawImage(eightOfClubsImage, cardarray[28].xpos,cardarray[28].ypos, cardarray[28].width, cardarray[28].height, null);
-        g.drawImage(eightOfDiamondsImage, cardarray[29].xpos,cardarray[29].ypos, cardarray[29].width, cardarray[29].height, null);
-        g.drawImage(eightOfHeartsImage, cardarray[30].xpos,cardarray[30].ypos, cardarray[30].width, cardarray[30].height, null);
-        g.drawImage(eightOfSpadesImage, cardarray[31].xpos,cardarray[31].ypos, cardarray[31].width, cardarray[31].height, null);
-        g.drawImage(nineOfSpadesImage, cardarray[32].xpos,cardarray[32].ypos, cardarray[32].width, cardarray[32].height, null);
-        g.drawImage(nineOfClubsImage, cardarray[33].xpos,cardarray[33].ypos, cardarray[33].width, cardarray[33].height, null);
-        g.drawImage(nineOfDiamondsImage, cardarray[34].xpos,cardarray[34].ypos, cardarray[34].width, cardarray[34].height, null);
-        g.drawImage(nineOfHeartsImage, cardarray[35].xpos,cardarray[35].ypos, cardarray[35].width, cardarray[35].height, null);
-        g.drawImage(tenOfClubsImage, cardarray[36].xpos,cardarray[36].ypos, cardarray[36].width, cardarray[36].height, null);
-        g.drawImage(tenOfDiamondsImage, cardarray[37].xpos,cardarray[37].ypos, cardarray[37].width, cardarray[37].height, null);
-        g.drawImage(tenOfHeartsImage, cardarray[38].xpos,cardarray[38].ypos, cardarray[38].width, cardarray[38].height, null);
-        g.drawImage(tenOfSpadesImage, cardarray[39].xpos,cardarray[39].ypos, cardarray[39].width, cardarray[39].height, null);
-        g.drawImage(jackOfSpadesImage, cardarray[40].xpos,cardarray[1].ypos, cardarray[40].width, cardarray[1].height, null);
-        g.drawImage(jackOfClubsImage, cardarray[41].xpos,cardarray[41].ypos, cardarray[41].width, cardarray[41].height, null);
-        g.drawImage(jackOfDiamondsImage, cardarray[42].xpos,cardarray[42].ypos, cardarray[42].width, cardarray[42].height, null);
-        g.drawImage(jackOfHeartsImage, cardarray[43].xpos,cardarray[43].ypos, cardarray[43].width, cardarray[43].height, null);
-        g.drawImage(queenOfClubsImage, cardarray[44].xpos,cardarray[44].ypos, cardarray[44].width, cardarray[44].height, null);
-        g.drawImage(queenOfDiamondsImage, cardarray[45].xpos,cardarray[45].ypos, cardarray[45].width, cardarray[45].height, null);
-        g.drawImage(queenOfHeartsImage, cardarray[46].xpos,cardarray[46].ypos, cardarray[46].width, cardarray[46].height, null);
-        g.drawImage(queenOfSpadesImage, cardarray[47].xpos,cardarray[47].ypos, cardarray[47].width, cardarray[47].height, null);
-        g.drawImage(kingOfSpadesImage, cardarray[48].xpos,cardarray[48].ypos, cardarray[48].width, cardarray[48].height, null);
-        g.drawImage(kingOfClubsImage, cardarray[49].xpos,cardarray[49].ypos, cardarray[49].width, cardarray[49].height, null);
-        g.drawImage(kingOfDiamondsImage, cardarray[50].xpos,cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
-        g.drawImage(kingOfHeartsImage, cardarray[51].xpos,cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
-
-
-
-        g.dispose();
-        bufferStrategy.show();
-    }
-
-    //Pauses or sleeps the computer for the amount specified in milliseconds
-    public void pause(int time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
+            g.dispose();
+            bufferStrategy.show();
         }
-    }
 
-    //Graphics setup method
-    private void setUpGraphics() {
-        frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
+        //Pauses or sleeps the computer for the amount specified in milliseconds
+        public void pause ( int time){
+            try {
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+            }
+        }
 
-        panel = (JPanel) frame.getContentPane();  //sets up a JPanel which is what goes in the frame
-        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
-        panel.setLayout(null);   //set the layout
+        //Graphics setup method
+        private void setUpGraphics () {
+            frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
 
-        // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
-        // and trap input events (Mouse and Keyboard events)
-        canvas = new Canvas();
-        canvas.setBounds(0, 0, WIDTH, HEIGHT);
-        canvas.setIgnoreRepaint(true);
+            panel = (JPanel) frame.getContentPane();  //sets up a JPanel which is what goes in the frame
+            panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
+            panel.setLayout(null);   //set the layout
 
-        panel.add(canvas);  // adds the canvas to the panel.
+            // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
+            // and trap input events (Mouse and Keyboard events)
+            canvas = new Canvas();
+            canvas.setBounds(0, 0, WIDTH, HEIGHT);
+            canvas.setIgnoreRepaint(true);
 
-        // frame operations
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //makes the frame close and exit nicely
-        frame.pack();  //adjusts the frame and its contents so the sizes are at their default or larger
-        frame.setResizable(false);   //makes it so the frame cannot be resized
-        frame.setVisible(true);      //IMPORTANT!!!  if the frame is not set to visible it will not appear on the screen!
+            panel.add(canvas);  // adds the canvas to the panel.
 
-        // sets up things so the screen displays images nicely.
-        canvas.createBufferStrategy(2);
-        bufferStrategy = canvas.getBufferStrategy();
-        canvas.requestFocus();
-        canvas.addKeyListener(this);
-        System.out.println("DONE graphic setup");
-    }
+            // frame operations
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //makes the frame close and exit nicely
+            frame.pack();  //adjusts the frame and its contents so the sizes are at their default or larger
+            frame.setResizable(false);   //makes it so the frame cannot be resized
+            frame.setVisible(true);      //IMPORTANT!!!  if the frame is not set to visible it will not appear on the screen!
+
+            // sets up things so the screen displays images nicely.
+            canvas.createBufferStrategy(2);
+            bufferStrategy = canvas.getBufferStrategy();
+            canvas.requestFocus();
+            canvas.addKeyListener(this);
+            System.out.println("DONE graphic setup");
+        }
 
     @Override
     public void keyTyped(KeyEvent e) {
