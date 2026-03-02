@@ -287,10 +287,6 @@ public class BasicGameApp implements Runnable, KeyListener {
         g.setColor(new Color(0,150,0));
         g.fillRect(0,0, WIDTH, HEIGHT);
         g.setColor(new Color(255,255,255));
-      //  g.fillRect(aceOfSpades.xpos,aceOfSpades.ypos, aceOfSpades.width, aceOfSpades.height+3);
-      //  g.drawImage(aceOfSpadesImage, aceOfSpades.xpos,aceOfSpades.ypos, aceOfSpades.width, aceOfSpades.height, null);
-      //  g.fillRect(aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height+3);
-     //   g.drawImage(aceOfClubsImage, aceOfClubs.xpos,aceOfClubs.ypos, aceOfClubs.width, aceOfClubs.height, null);
         g.fillRect(cardarray[num].xpos,cardarray[num].ypos, cardarray[num].width, cardarray[num].height+3);
         g.fillRect(cardarray[num2].xpos,cardarray[num2].ypos, cardarray[num2].width, cardarray[num2].height+3);
         g.fillRect(cardarray[num3].xpos,cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height+3);
