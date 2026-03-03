@@ -52,9 +52,7 @@ public class Snoopy {
     }
 
 }
-// if (cardNumbers > dealerNumbers) {
-// sout(you win)
-// }
+
 
 
 

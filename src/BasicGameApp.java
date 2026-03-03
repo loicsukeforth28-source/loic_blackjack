@@ -98,16 +98,20 @@ public class BasicGameApp implements Runnable, KeyListener {
    public int num2;
    public int num3;
    public int num4;
+    public int num0;
    public boolean hit1=false;
    public boolean hit1used=false;
     public boolean hit2=false;
     public boolean hit3=false;
+    public boolean stay=false;
     public boolean isNum1used=false;
     public boolean isNum2used=false;
     public boolean isNum3used=false;
     public boolean isNum4used=false;
+    public boolean isNum0used=false;
     public boolean print = false;
     public boolean print2 = false;
+    public boolean Ace11=false;
     // Main method definition
     // This is the code that runs first and automatically
     public static void main(String[] args) {
@@ -242,24 +246,47 @@ public class BasicGameApp implements Runnable, KeyListener {
             if (cardSum==dealerSum){
 
             }
+            if (Ace11 == true &&cardarray[num].value==1){
+                cardarray[num].value = 11;
+            }
+            if (Ace11 == true &&cardarray[num2].value==1){
+                cardarray[num2].value = 11;
+            }
+            if (Ace11 == true &&cardarray[num3].value==1){
+                cardarray[num3].value = 11;
+            }
+            if (Ace11 == true &&cardarray[num4].value==1){
+                cardarray[num4].value = 11;
+            }
+
         }
     }
 
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
+        // dealer cards
+        if (!isNum0used) {
+            num0 = (int) (Math.random() * 52);
+            isNum0used = true;
+        }
+        if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0) {
+            cardarray[num0].play(425, 10);
+            //System.out.println(num);
+            dealerSum = cardarray[num0].value;
+        }
         if (!isNum1used) {
             num = (int) (Math.random() * 52);
             isNum1used = true;
         }
-        cardarray[num].play(425, 610);
-        //System.out.println(num);
-        cardSum = cardarray[num].value;
-        //     System.out.println(cardarray[num].value+"="+cardSum);
+        if(num!=num0) {
+            cardarray[num].play(425, 610);
+            cardSum = cardarray[num].value;
+        }
         if (!isNum2used) {
             num2 = (int) (Math.random() * 52);
             isNum2used = true;
         }
-        if (num2 != num) {
+        if (num2 != num&& num2!=num0) {
             cardarray[num2].play(500, 610);
             //   System.out.println(num2);
             cardSum = cardarray[num].value + cardarray[num2].value;
@@ -269,7 +296,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             num3 = (int) (Math.random() * 52);
             isNum3used = true;
         }
-        if (num2 != num3 && num != num3 && cardSum < 22 && hit1) {
+        if (num0!= num3&&num2 != num3 && num != num3 && cardSum < 22 && hit1) {
             cardarray[num3].play(575, 610);
             //   System.out.println(num3);
             cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
@@ -278,15 +305,18 @@ public class BasicGameApp implements Runnable, KeyListener {
                     System.out.println("you lose haha bozo");
                 }
                 System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
+//                Ace11=true;
+//                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
+//               Ace11=false;
                 print = true;
                 hit1used=true;
             }
         }
-        if (isNum4used) {
+        if (!isNum4used) {
             num4 = (int) (Math.random() * 52);
             isNum4used = true;
         }
-        if (num2 != num4 && num != num4 && num3 != num4 && cardSum < 22 && hit2&&hit1used) {
+        if (num0!=num4&&num2 != num4 && num != num4 && num3 != num4 && cardSum < 22 && hit2&&hit1used) {
             cardarray[num4].play(650, 610);
             cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value;
             if (!print2) {
@@ -294,6 +324,9 @@ public class BasicGameApp implements Runnable, KeyListener {
                     System.out.println("you lose haha bozo");
                 }
                 System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+//                Ace11=true;
+//                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+//                Ace11=false;
                 print2 = true;
             }
         }
@@ -306,6 +339,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.setColor(new Color(0, 150, 0));
             g.fillRect(0, 0, WIDTH, HEIGHT);
             g.setColor(new Color(255, 255, 255));
+            g.fillRect(cardarray[num0].xpos, cardarray[num0].ypos, cardarray[num0].width, cardarray[num0].height + 3);
             g.fillRect(cardarray[num].xpos, cardarray[num].ypos, cardarray[num].width, cardarray[num].height + 3);
             g.fillRect(cardarray[num2].xpos, cardarray[num2].ypos, cardarray[num2].width, cardarray[num2].height + 3);
             g.fillRect(cardarray[num3].xpos, cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height + 3);
@@ -362,7 +396,8 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.drawImage(kingOfClubsImage, cardarray[49].xpos, cardarray[49].ypos, cardarray[49].width, cardarray[49].height, null);
             g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
             g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
-
+            g.setFont(new Font("Arial",Font.BOLD,50));
+            g.drawString("you have "+cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 100,200);
 
             g.dispose();
             bufferStrategy.show();
@@ -413,6 +448,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //System.out.println(e.getKeyCode());
         if (e.getKeyCode()==49){
             hit1=true;
         }
@@ -421,6 +457,9 @@ public class BasicGameApp implements Runnable, KeyListener {
         }
         if (e.getKeyCode()==51){
             hit3=true;
+        }
+        if (e.getKeyCode()==10){
+            stay=true;
         }
     }
 
