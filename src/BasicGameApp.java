@@ -269,33 +269,52 @@ public class BasicGameApp implements Runnable, KeyListener {
             num0 = (int) (Math.random() * 52);
             isNum0used = true;
         }
-        if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0) {
-            cardarray[num0].play(425, 10);
-            //System.out.println(num);
-            dealerSum = cardarray[num0].value;
-        }
         if (!isNum1used) {
             num = (int) (Math.random() * 52);
             isNum1used = true;
-        }
-        if(num!=num0) {
-            cardarray[num].play(425, 610);
-            cardSum = cardarray[num].value;
         }
         if (!isNum2used) {
             num2 = (int) (Math.random() * 52);
             isNum2used = true;
         }
+        if (!isNum3used) {
+            num3 = (int) (Math.random() * 52);
+            isNum3used = true;
+        }
+        if (!isNum4used) {
+            num4 = (int) (Math.random() * 52);
+            isNum4used = true;
+        }
+        if (num0==num||num0==num2||num0==num3||num0==num4){
+            isNum0used=false;
+        }
+        if (num==num2||num==num3||num==num4){
+            isNum1used=false;
+        }
+        if (num2==num3||num2==num4){
+            isNum2used=false;
+        }
+        if (num3==num4){
+            isNum3used=false;
+        }
+        if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0) {
+            cardarray[num0].play(425, 10);
+            //System.out.println(num);
+            dealerSum = cardarray[num0].value;
+        }
+
+        if(num!=num0) {
+            cardarray[num].play(425, 610);
+            cardSum = cardarray[num].value;
+        }
+
         if (num2 != num&& num2!=num0) {
             cardarray[num2].play(500, 610);
             //   System.out.println(num2);
             cardSum = cardarray[num].value + cardarray[num2].value;
             //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
         }
-        if (!isNum3used) {
-            num3 = (int) (Math.random() * 52);
-            isNum3used = true;
-        }
+
         if (num0!= num3&&num2 != num3 && num != num3 && cardSum < 22 && hit1) {
             cardarray[num3].play(575, 610);
             //   System.out.println(num3);
@@ -312,10 +331,7 @@ public class BasicGameApp implements Runnable, KeyListener {
                 hit1used=true;
             }
         }
-        if (!isNum4used) {
-            num4 = (int) (Math.random() * 52);
-            isNum4used = true;
-        }
+
         if (num0!=num4&&num2 != num4 && num != num4 && num3 != num4 && cardSum < 22 && hit2&&hit1used) {
             cardarray[num4].play(650, 610);
             cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value;
@@ -396,9 +412,15 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.drawImage(kingOfClubsImage, cardarray[49].xpos, cardarray[49].ypos, cardarray[49].width, cardarray[49].height, null);
             g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
             g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
-            g.setFont(new Font("Arial",Font.BOLD,50));
-            g.drawString("you have "+cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 100,200);
-
+            g.setFont(new Font("Arial",Font.BOLD,40));
+            if (!print) {
+                g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 10, 200);
+            }
+            else if (!print2) {
+                g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum, 10, 200);
+            }
+            else
+                g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value +"+"+cardarray[num3].value+"+" +cardarray[num4].value+"=" + cardSum, 10, 200);
             g.dispose();
             bufferStrategy.show();
         }
