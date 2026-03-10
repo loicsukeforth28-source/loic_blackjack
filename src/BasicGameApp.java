@@ -122,9 +122,18 @@ public class BasicGameApp implements Runnable, KeyListener {
     public boolean print = false;
     public boolean print2 = false;
     public boolean print3 = false;
+    public boolean dealerPrint = false;
+    public boolean dealerPrint2 = false;
+    public boolean dealerPrint3 = false;
     public boolean Ace11=false;
     public boolean thirdDealerCard=false;
     public boolean fourthDealerCard=false;
+    public String result;
+    public boolean done;
+    public boolean keepCardSum=false;
+    public boolean keepCardSum2=false;
+    public boolean cardsGood=true;
+
     // Main method definition
     // This is the code that runs first and automatically
     public static void main(String[] args) {
@@ -174,7 +183,7 @@ public class BasicGameApp implements Runnable, KeyListener {
         aceOfSpadesImage = Toolkit.getDefaultToolkit().getImage("AceSpades.png");
         aceOfHeartsImage = Toolkit.getDefaultToolkit().getImage("AceHearts.png");
         aceOfClubsImage = Toolkit.getDefaultToolkit().getImage("AceClubs.png");
-        aceOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("AceClubs.png");
+        aceOfDiamondsImage = Toolkit.getDefaultToolkit().getImage("AceDiamonds.png");
 
         twoOfSpadesImage = Toolkit.getDefaultToolkit().getImage("TwoSpades.png");
         twoOfHeartsImage = Toolkit.getDefaultToolkit().getImage("TwoHearts.png");
@@ -274,6 +283,40 @@ public class BasicGameApp implements Runnable, KeyListener {
 
         }
     }
+    public void checkCards(){
+        if (num0==num||num0==num2||num0==num3||num0==num4||num0==num00||num0==num000||num0==num0000||num0==num5){
+            isNum0used=false;
+            cardsGood=false;
+        }
+        if (num==num2||num==num3||num==num4||num==num00||num==num000||num==num0000||num==num5){
+            isNum1used=false;
+            cardsGood=false;
+        }
+        if (num2==num3||num2==num4||num2==num00||num2==num000||num2==num0000||num2==num5){
+            isNum2used=false;
+            cardsGood=false;
+        }
+        if (num3==num4||num3==num00||num3==num000||num3==num0000||num3==num5){
+            isNum3used=false;
+            cardsGood=false;
+        }
+        if(num4==num00||num4==num000||num4==num0000||num4==num5){
+            isNum4used=false;
+            cardsGood=false;
+        }
+        if(num00==num000||num00==num0000||num00==num5){
+            isNum00used=false;
+            cardsGood=false;
+        }
+        if(num000==num0000||num000==num5){
+            isNum000used=false;
+            cardsGood=false;
+        }
+        if(num0000==num5){
+            isNum0000used=false;
+            cardsGood=false;
+        }
+    }
 
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
@@ -298,125 +341,141 @@ public class BasicGameApp implements Runnable, KeyListener {
             num4 = (int) (Math.random() * 52);
             isNum4used = true;
         }
-        if (!isNum00used){
-            num00= (int) (Math.random() * 52);
-            isNum00used=true;
+        if (!isNum00used) {
+            num00 = (int) (Math.random() * 52);
+            isNum00used = true;
         }
-        if (!isNum000used){
-            num000= (int) (Math.random() * 52);
-            isNum000used=true;
+        if (!isNum000used) {
+            num000 = (int) (Math.random() * 52);
+            isNum000used = true;
         }
-        if (!isNum0000used){
-            num0000= (int) (Math.random() * 52);
-            isNum0000used=true;
+        if (!isNum0000used) {
+            num0000 = (int) (Math.random() * 52);
+            isNum0000used = true;
         }
-        if (!isNum5used){
-            num5= (int) (Math.random() * 52);
-            isNum5used=true;
+        if (!isNum5used) {
+            num5 = (int) (Math.random() * 52);
+            isNum5used = true;
         }
-        if (num0==num||num0==num2||num0==num3||num0==num4||num0==num00||num0==num000||num0==num0000||num0==num5){
-            isNum0used=false;
-        }
-        if (num==num2||num==num3||num==num4||num==num00||num==num000||num==num0000||num==num5){
-            isNum1used=false;
-        }
-        if (num2==num3||num2==num4||num2==num00||num2==num000||num2==num0000||num2==num5){
-            isNum2used=false;
-        }
-        if (num3==num4||num3==num00||num3==num000||num3==num0000||num3==num5){
-            isNum3used=false;
-        }
-        if(num4==num00||num4==num000||num4==num0000||num4==num5){
-            isNum4used=false;
-        }
-        if(num00==num000||num00==num0000||num00==num5){
-            isNum00used=false;
-        }
-        if(num000==num0000||num000==num5){
-            isNum000used=false;
-        }
-        if(num0000==num5){
-            isNum0000used=false;
-        }
+        checkCards();
+        if (cardsGood) {
 
-        if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0&& num0!=num00&&num0!=num000&&num0!=num0000&&num0!=num5) {
+            //  if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0&& num0!=num00&&num0!=num000&&num0!=num0000&&num0!=num5) {
             cardarray[num0].play(425, 10);
-        //    System.out.println("num0 is "+num0);
+            //    System.out.println("num0 is "+num0);
             dealerSum = cardarray[num0].value;
-        }
+            //  }
 
-        if(num!=num0&& num!=num00&&num!=num000&&num!=num0000&&num!=num5) {
+            //   if(num!=num0&& num!=num00&&num!=num000&&num!=num0000&&num!=num5) {
             cardarray[num].play(425, 610);
-       //     System.out.println("num is "+num);
-            cardSum = cardarray[num].value;
-        }
+            //     System.out.println("num is "+num);
+            if (!keepCardSum) {
+                cardSum = cardarray[num].value;
+                keepCardSum = true;
+            }
+            //  }
 
-        if (num2 != num&& num2!=num0&& num!=num00&&num2!=num000&&num2!=num0000&&num2!=num5) {
+            //  if (num2 != num&& num2!=num0&& num!=num00&&num2!=num000&&num2!=num0000&&num2!=num5) {
             cardarray[num2].play(500, 610);
-        //    System.out.println("num2 is "+num2);
-            cardSum = cardarray[num].value + cardarray[num2].value;
+            //    System.out.println("num2 is "+num2);
+            if (!keepCardSum2) {
+                cardSum = cardarray[num].value + cardarray[num2].value;
+                keepCardSum2 = true;
+            }
             //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
-        }
+            //   }
 
-        if (num0!= num3&&num2 != num3 && num != num3 && num3!=num00&&num3!=num000&&num3!=num0000&&num3!=num5&& cardSum < 22 && hit1) {
-            cardarray[num3].play(575, 610);
-         //   System.out.println("num3 is "+num3);
-            cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
-            if (!print) {
-                if (cardSum > 21) {
-                    System.out.println("you lose haha bozo");
-                }
-                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
+            if (num0 != num3 && num2 != num3 && num != num3 && num3 != num00 && num3 != num000 && num3 != num0000 && num3 != num5 && cardSum < 22 && hit1 && !stay) {
+                cardarray[num3].play(575, 610);
+                //   System.out.println("num3 is "+num3);
+                cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
+                if (!print) {
+                    if (cardSum > 21) {
+                        System.out.println("you lose haha bozo");
+                    }
+                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
 //                Ace11=true;
 //                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
 //               Ace11=false;
-                print = true;
-                hit1used=true;
+                    print = true;
+                    hit1used = true;
+                }
             }
-        }
 
-        if (num0!=num4&&num2 != num4 && num != num4 && num3 != num4 &&num4!=num00&&num4!=num000&&num4!=num0000&&num4!=num5&& cardSum < 22 && hit2&&hit1used) {
-            cardarray[num4].play(650, 610);
-            cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value;
-         //   System.out.println("num4 is "+num4);
-            if (!print2) {
-                if (cardSum > 21) {
-                    System.out.println("you lose haha bozo");
-                }
-                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+            if (num0 != num4 && num2 != num4 && num != num4 && num3 != num4 && num4 != num00 && num4 != num000 && num4 != num0000 && num4 != num5 && cardSum < 22 && hit2 && hit1used && !stay) {
+                cardarray[num4].play(650, 610);
+                cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value;
+                //   System.out.println("num4 is "+num4);
+                if (!print2) {
+                    if (cardSum > 21) {
+                        System.out.println("you lose haha bozo");
+                    }
+                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
 //                Ace11=true;
 //                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
 //                Ace11=false;
-                print2 = true;
-                hit2used=true;
-            }
-        }
-        if (num0!=num5&&num2 != num5 && num != num5 && num3 != num5 &&num5!=num00&&num5!=num000&&num5!=num0000&& cardSum < 22 && hit2used&&hit1used&&hit3) {
-            cardarray[num5].play(725, 610);
-         //   System.out.println("num5 is "+num5);
-            cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value+ cardarray[num5].value;
-            if (!print3) {
-                if (cardSum > 21) {
-                    System.out.println("you lose haha bozo");
+                    print2 = true;
+                    hit2used = true;
                 }
-                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+            }
+            if (num0 != num5 && num2 != num5 && num != num5 && num3 != num5 && num5 != num00 && num5 != num000 && num5 != num0000 && cardSum < 22 && hit2used && hit1used && hit3 && !stay) {
+                cardarray[num5].play(725, 610);
+                //   System.out.println("num5 is "+num5);
+                cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value + cardarray[num5].value;
+                if (!print3) {
+                    if (cardSum > 21) {
+                        System.out.println("you lose haha bozo");
+                    }
+                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
 //                Ace11=true;
 //                System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
 //                Ace11=false;
-                print3 = true;
-                hit3used=true;
+                    print3 = true;
+                    hit3used = true;
+                }
+
             }
-        }
-        if (stay){
-            cardarray[num00].play(500,10);
-            dealerSum = cardarray[num00].value + cardarray[num0].value;
-            if (dealerSum<17&&!thirdDealerCard){
-                cardarray[num000].play(575,10);
-                dealerSum = cardarray[num00].value + cardarray[num0].value+cardarray[num000].value;
-            }
-            if (dealerSum<17&&thirdDealerCard&&!fourthDealerCard){
-                cardarray[num0000].play(650,10);
-                dealerSum = cardarray[num00].value + cardarray[num0].value+cardarray[num000].value+cardarray[num0000].value;
+            if (stay) {
+                cardarray[num00].play(500, 10);
+                if (!dealerPrint) {
+                    System.out.println(cardarray[num0].value + "+" + cardarray[num00].value + "=" + dealerSum);
+                    dealerPrint = true;
+                }
+                dealerSum = cardarray[num00].value + cardarray[num0].value;
+                if (dealerSum < 17 && !thirdDealerCard) {
+                    cardarray[num000].play(575, 10);
+                    dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value;
+                    thirdDealerCard = true;
+                    if (!dealerPrint2) {
+                        System.out.println(cardarray[num0].value + "+" + cardarray[num00].value + "+" + cardarray[num000].value + "=" + dealerSum);
+                        dealerPrint2 = true;
+                    }
+                }
+                if (dealerSum < 17 && thirdDealerCard && !fourthDealerCard) {
+                    cardarray[num0000].play(650, 10);
+                    dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value + cardarray[num0000].value;
+                    if (!dealerPrint3) {
+                        System.out.println(cardarray[num00].value + "+" + cardarray[num0].value + "+" + cardarray[num000].value + "+" + cardarray[num0000].value + "=" + dealerSum);
+                        dealerPrint3 = true;
+                        fourthDealerCard = true;
+                    }
+                }
+                if (dealerSum >= 17 && dealerSum < 22) {
+                    if (cardSum > dealerSum && cardSum < 22) {
+                        result = "You Win (i guess)";
+                    }
+
+                    if (cardSum < dealerSum) {
+                        result = "you lose haha bozo";
+                    }
+                    if (cardSum == dealerSum) {
+                        result = "you broke (even)";
+                    }
+                    done = true;
+                } else if (dealerSum > 21 && cardSum < 22) {
+                    result = "You Win (i guess)";
+                    done = true;
+                }
             }
         }
     }
@@ -477,7 +536,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.drawImage(tenOfDiamondsImage, cardarray[37].xpos, cardarray[37].ypos, cardarray[37].width, cardarray[37].height, null);
             g.drawImage(tenOfHeartsImage, cardarray[38].xpos, cardarray[38].ypos, cardarray[38].width, cardarray[38].height, null);
             g.drawImage(tenOfSpadesImage, cardarray[39].xpos, cardarray[39].ypos, cardarray[39].width, cardarray[39].height, null);
-            g.drawImage(jackOfSpadesImage, cardarray[40].xpos, cardarray[1].ypos, cardarray[40].width, cardarray[1].height, null);
+            g.drawImage(jackOfSpadesImage, cardarray[40].xpos, cardarray[40].ypos, cardarray[40].width, cardarray[40].height, null);
             g.drawImage(jackOfClubsImage, cardarray[41].xpos, cardarray[41].ypos, cardarray[41].width, cardarray[41].height, null);
             g.drawImage(jackOfDiamondsImage, cardarray[42].xpos, cardarray[42].ypos, cardarray[42].width, cardarray[42].height, null);
             g.drawImage(jackOfHeartsImage, cardarray[43].xpos, cardarray[43].ypos, cardarray[43].width, cardarray[43].height, null);
@@ -490,6 +549,9 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
             g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
             g.setFont(new Font("Arial",Font.BOLD,40));
+            if (done){
+                g.drawString(result,600, 200);
+            }
             if (!print) {
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 10, 200);
             }
