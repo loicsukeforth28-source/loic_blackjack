@@ -91,6 +91,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 
 
     public int cardSum;
+    public int ace11CardSum;
     public int dealerSum;
     public boolean win;
      Card [] cardarray=new Card[52];
@@ -272,16 +273,14 @@ public class BasicGameApp implements Runnable, KeyListener {
             if (cardSum==dealerSum){
 
             }
-            if (Ace11 == true &&cardarray[num].value==1){
-                cardarray[num].value = 11;
-            }
-            if (Ace11 == true &&cardarray[num2].value==1){
+
+            if (Ace11 &&cardarray[num2].value==1){
                 cardarray[num2].value = 11;
             }
-            if (Ace11 == true &&cardarray[num3].value==1){
+            if (Ace11 &&cardarray[num3].value==1){
                 cardarray[num3].value = 11;
             }
-            if (Ace11 == true &&cardarray[num4].value==1){
+            if (Ace11 &&cardarray[num4].value==1){
                 cardarray[num4].value = 11;
             }
 
@@ -356,14 +355,9 @@ public class BasicGameApp implements Runnable, KeyListener {
             isNum0000used=false;
             cardsGood = false;
         }
-//        if (!isNum0000used||!isNum000used||!isNum00used||!isNum4used||!isNum3used||!isNum2used||!isNum1used||!isNum0used) {
-//            cardsGood = false;
-//        }
         else cardsGood=true;
 
     }
-
-
     public void moveThings() {
 // there's a 1 in 1352 chance that it fails 1 time and a 1 in about 140000 chance it screws up 2 times
         // dealer cards
@@ -402,6 +396,9 @@ public class BasicGameApp implements Runnable, KeyListener {
             //     System.out.println("num is "+num);
             if (!keepCardSum) {
                 cardSum = cardarray[num].value;
+                if (cardarray[num].value==1){
+                    ace11CardSum = cardarray[num].value+10;
+                }
                 keepCardSum = true;
             }
             //  }
@@ -411,6 +408,9 @@ public class BasicGameApp implements Runnable, KeyListener {
             //    System.out.println("num2 is "+num2);
             if (!keepCardSum2) {
                 cardSum = cardarray[num].value + cardarray[num2].value;
+                if (cardarray[num2].value==1||cardarray[num].value==1){
+                    ace11CardSum = cardarray[num].value+ cardarray[num2].value+10;
+                }
                 keepCardSum2 = true;
             }
             //        System.out.println(cardarray[num].value+"+"+cardarray[num2].value+"="+cardSum);
@@ -420,6 +420,13 @@ public class BasicGameApp implements Runnable, KeyListener {
                 cardarray[num3].play(575, 610);
                 //   System.out.println("num3 is "+num3);
                 cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
+                if (cardarray[num3].value==1||cardarray[num2].value==1||cardarray[num].value==1){
+                    ace11CardSum = cardarray[num].value+ cardarray[num2].value+ cardarray[num3].value+10;
+
+                }
+                if(cardSum==21||ace11CardSum==21){
+                    result = "Blackjack! You Win!";
+                }
                 if (!print) {
                     if (cardSum > 21) {
                         System.out.println("you lose haha bozo");
@@ -471,6 +478,9 @@ public class BasicGameApp implements Runnable, KeyListener {
                 cardarray[num00].play(500, 10);
                 if (!firstDealerSum) {
                     dealerSum = cardarray[num0].value + cardarray[num00].value;
+                    if (cardarray[num00].value==1){
+
+                    }
                     firstDealerSum=true;
                    // System.out.println(dealerSum);
                 }
@@ -502,14 +512,14 @@ public class BasicGameApp implements Runnable, KeyListener {
                         result = "You Win (i guess)";
                     }
 
-                    if (cardSum < dealerSum) {
+                    if (cardSum < dealerSum||ace11CardSum<dealerSum) {
                         result = "you lose haha bozo";
                     }
                     if (cardSum == dealerSum) {
                         result = "you broke (even)";
                     }
                     done = true;
-                } else if (dealerSum > 21 && cardSum < 22) {
+                } else if (dealerSum > 21 && cardSum < 22 || ace11CardSum<22) {
                     result = "You Win (i guess)";
                     done = true;
                 }
@@ -593,16 +603,31 @@ public class BasicGameApp implements Runnable, KeyListener {
             }
             if (!print) {
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 10, 200);
+                if (cardarray[num].value==1){
+                    g.drawString("or you have " + 11 + "+" + cardarray[num2].value + "=" + ace11CardSum, 10, 250);
+                }
+                if (cardarray[num2].value==1){
+                    g.drawString("or you have " + cardarray[num].value + "+" + 11 + "=" + ace11CardSum, 10, 250);
+                }
             }
             else if (!print2) {
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum, 10, 200);
+                if (cardarray[num].value==1){
+                    g.drawString("or you have " + 11 + "+" + cardarray[num2].value + "+" + cardarray[num3].value +"=" + ace11CardSum, 10, 250);
+                }
+                if (cardarray[num2].value==1){
+                    g.drawString("or you have " + cardarray[num].value + "+" + 11 +"+" + cardarray[num3].value + "=" + ace11CardSum, 10, 250);
+                }
+                if (cardarray[num3].value==1){
+                    g.drawString("or you have " + cardarray[num].value + "+" + cardarray[num2].value +"+" + 11 + "=" + ace11CardSum, 10, 250);
+                }
             }
             else if(!print3){
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value +"+"+cardarray[num3].value+"+" +cardarray[num4].value+"=" + cardSum, 10, 200);
             }
             else
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value +"+"+cardarray[num3].value+"+" +cardarray[num4].value+"+"+cardarray[num5].value+"=" + cardSum, 10, 200);
-
+            g.drawString("Dealer has: "+dealerSum,10,300);
             g.dispose();
             bufferStrategy.show();
         }
