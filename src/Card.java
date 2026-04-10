@@ -13,26 +13,15 @@ public class Card {
     public boolean secondCard;
     public boolean thirdCard;
 
-
-
-
-
     public Card( int pvalue) {
         value = pvalue;
-      //  create a flag to be either 1 or 11
-
         width = 60;
         height = 80;
         xpos=-100;
         ypos=-100;
-
     }
     public void play(int pXpos,int pYpos){
             xpos = pXpos;
             ypos = pYpos;
-
-
-
-
     }
 }
