@@ -11,6 +11,8 @@
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
 
 //*******************************************************************************
 
-public class BasicGameApp implements Runnable, KeyListener {
+public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
     //Variable Definition Section
     //Declare the variables used in the program
@@ -279,7 +281,6 @@ public class BasicGameApp implements Runnable, KeyListener {
     // this is the code that plays the game after you set things up
     public void run() {
         //for the moment we will loop things forever.
-      //  moveThings();
         while (true) {
            moveThings();  //move all the game objects
             render();  // paint the graphics
@@ -287,6 +288,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 
         }
     }
+    //Makes all the cards and makes sure they are all different
     public void createCardsCheckCards(){
         if (!isNum0used) {
             num0 = (int) (Math.random() * 52);
@@ -352,6 +354,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             num11 = (int) (Math.random() * 52);
             isNum11used = true;
         }
+        // This sequence of if statements makes it so only once every card is different does it move on to the playing part
         if (num0==num||num0==num2||num0==num3||num0==num4||num0==num00||num0==num000||num0==num0000||num0==num5||num0==num00000||num0==num6||num0==num7||num0==num8||num0==num9||num0==num10||num0==num11){
             isNum0used=false;
             cardsGood = false;
@@ -416,6 +419,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     }
     public void moveThings() {
+        //starts the process of making cards and checking them
         if(!cardsCreated) {
             createCardsCheckCards();
             cardsCreated=true;
@@ -423,37 +427,32 @@ public class BasicGameApp implements Runnable, KeyListener {
             while (!cardsGood){
                 createCardsCheckCards();
             }
-            if (!printCards){
-                System.out.println(num);
-                System.out.println(num2);
-                System.out.println(num3);
-                System.out.println(num4);
-                System.out.println(num5);
-                System.out.println(num0);
-                System.out.println(num00);
-                System.out.println(num000);
-                System.out.println(num0000);
-                System.out.println(num00000);
-                printCards=true;
-            }
-
-        if (cardsGood&&cardsCreated) {
-
-            //  if (num != num0 && num2 != num0 && num3 !=num0 &&num4!=num0&& num0!=num00&&num0!=num000&&num0!=num0000&&num0!=num5) {
+//            if (!printCards){
+//                System.out.println(num);
+//                System.out.println(num2);
+//                System.out.println(num3);
+//                System.out.println(num4);
+//                System.out.println(num5);
+//                System.out.println(num0);
+//                System.out.println(num00);
+//                System.out.println(num000);
+//                System.out.println(num0000);
+//                System.out.println(num00000);
+//                printCards=true;
+//            }
+        if (cardsCreated) {
+            //plays the first dealer card
             cardarray[num0].play(425, 10);
-            //    System.out.println("num0 is "+num0);
             if (!zeroithDealerSum){
-            dealerSum = cardarray[num0].value;
-            if(cardarray[num0].value==1){
-                aceDealerSum = cardarray[num0].value +10;
-                System.out.println("ace dealer sum is "+aceDealerSum);
-            }
+                dealerSum = cardarray[num0].value;
+                if(cardarray[num0].value==1){
+                    aceDealerSum = cardarray[num0].value +10;
+//                System.out.println("ace dealer sum is "+aceDealerSum);
+                }
             zeroithDealerSum=true;
             }
-
-            //   if(num!=num0&& num!=num00&&num!=num000&&num!=num0000&&num!=num5) {
+            //plays the first player card
             cardarray[num].play(425, 610);
-            //     System.out.println("num is "+num);
             if (!keepCardSum) {
                 cardSum = cardarray[num].value;
                 if (cardarray[num].value==1){
@@ -461,7 +460,6 @@ public class BasicGameApp implements Runnable, KeyListener {
                 }
                 keepCardSum = true;
             }
-            //  }
 
 
             cardarray[num2].play(500, 610);
@@ -537,6 +535,7 @@ public class BasicGameApp implements Runnable, KeyListener {
                 }
 
             }
+            //once player stays then all the other dealer cards are played
             if (stay) {
                 cardarray[num00].play(500, 10);
                 if (!firstDealerSum) {
@@ -553,6 +552,7 @@ public class BasicGameApp implements Runnable, KeyListener {
                     dealerPrint = true;
                 }
                 if (aceDealerSum<18&&dealerSum < 17 && !thirdDealerCard) {
+                    pause(150);
                     cardarray[num000].play(575, 10);
                     if (!secondDealerSum){
                     dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value;
@@ -643,6 +643,15 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.fillRect(cardarray[num3].xpos, cardarray[num3].ypos, cardarray[num3].width, cardarray[num3].height + 3);
             g.fillRect(cardarray[num4].xpos, cardarray[num4].ypos, cardarray[num4].width, cardarray[num4].height + 3);
             g.fillRect(cardarray[num5].xpos, cardarray[num5].ypos, cardarray[num5].width, cardarray[num5].height + 3);
+            g.fillRect(cardarray[num6].xpos, cardarray[num6].ypos, cardarray[num6].width, cardarray[num6].height + 3);
+            g.fillRect(cardarray[num7].xpos, cardarray[num7].ypos, cardarray[num7].width, cardarray[num7].height + 3);
+            g.fillRect(cardarray[num8].xpos, cardarray[num8].ypos, cardarray[num8].width, cardarray[num8].height + 3);
+            g.fillRect(cardarray[num9].xpos, cardarray[num9].ypos, cardarray[num9].width, cardarray[num9].height + 3);
+            g.fillRect(cardarray[num10].xpos, cardarray[num10].ypos, cardarray[num10].width, cardarray[num10].height + 3);
+            g.fillRect(320,605,85,85);
+            g.setColor(new Color(250, 0, 0));
+            g.fillRect(325,610,75,75);
+            g.setColor(new Color(255, 255, 255));
             g.drawImage(aceOfHeartsImage, cardarray[0].xpos, cardarray[0].ypos, cardarray[0].width, cardarray[0].height, null);
             g.drawImage(aceOfSpadesImage, cardarray[1].xpos, cardarray[1].ypos, cardarray[1].width, cardarray[1].height, null);
             g.drawImage(aceOfClubsImage, cardarray[2].xpos, cardarray[2].ypos, cardarray[2].width, cardarray[2].height, null);
@@ -696,6 +705,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
             g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
             g.setFont(new Font("Arial",Font.BOLD,40));
+            g.drawString("Hit",335,657);
             if (done){
                 g.drawString(result,600, 200);
             }
@@ -775,6 +785,7 @@ public class BasicGameApp implements Runnable, KeyListener {
             bufferStrategy = canvas.getBufferStrategy();
             canvas.requestFocus();
             canvas.addKeyListener(this);
+            canvas.addMouseListener(this);
             System.out.println("DONE graphic setup");
         }
 
@@ -866,5 +877,31 @@ public class BasicGameApp implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println(e.getX()+","+e.getY());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
+
 
