@@ -465,8 +465,11 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             cardarray[num2].play(500, 610);
             if (!keepCardSum2) {
                 cardSum = cardarray[num].value + cardarray[num2].value;
-                if (cardarray[num2].value == 1 || cardarray[num].value == 1) {
-                    ace11CardSum = cardarray[num].value + cardarray[num2].value + 10;
+                if(cardarray[num].value==1||cardarray[num2].value==1){
+                    ace11CardSum=cardSum;
+                }
+                if (cardarray[num2].value == 1) {
+                    ace11CardSum = ace11CardSum+ 11;
                 }
                 if (ace11CardSum > cardSum && ace11CardSum < 22) {
                     finalSum = ace11CardSum;
@@ -797,15 +800,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     @Override
     public void keyPressed(KeyEvent e) {
          //System.out.println(e.getKeyCode());
-        if (e.getKeyCode()==32){
-            if(hit2&&!hit3){
-                hit3=true;
-            }
-            if(hit1&&!hit2){
-                hit2=true;
-            }
-            hit1=true;
-        }
+
       if (e.getKeyCode()==82){
            cardSum=0;
            ace11CardSum=0;
@@ -886,6 +881,15 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println(e.getX()+","+e.getY());
+        if (e.getX()>=320&& e.getX()<=405&&e.getY()>=605&&e.getY()<=690){
+            if(hit2&&!hit3){
+                hit3=true;
+            }
+            if(hit1&&!hit2){
+                hit2=true;
+            }
+            hit1=true;
+        }
     }
 
     @Override
