@@ -455,6 +455,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             cardarray[num].play(425, 610);
             if (!keepCardSum) {
                 cardSum = cardarray[num].value;
+                if (cardarray[num].value!=1){
+                    ace11CardSum=dealerSum;
+                }
                 if (cardarray[num].value==1){
                     ace11CardSum = cardarray[num].value+10;
                 }
@@ -465,11 +468,11 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             cardarray[num2].play(500, 610);
             if (!keepCardSum2) {
                 cardSum = cardarray[num].value + cardarray[num2].value;
-                if(cardarray[num].value==1||cardarray[num2].value==1){
-                    ace11CardSum=cardSum;
+                if (cardarray[num2].value !=1 &&cardarray[num].value != 1) {
+                    ace11CardSum = dealerSum;
                 }
-                if (cardarray[num2].value == 1) {
-                    ace11CardSum = ace11CardSum+ 11;
+                if (cardarray[num2].value == 1||cardarray[num].value == 1) {
+                    ace11CardSum = cardarray[num].value+cardarray[num2].value+ 10;
                 }
                 if (ace11CardSum > cardSum && ace11CardSum < 22) {
                     finalSum = ace11CardSum;
@@ -489,8 +492,8 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 cardarray[num3].play(575, 610);
                 if (!keepCardSum3) {
                     cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value;
-                    if (cardarray[num3].value == 1) {
-                        ace11CardSum = ace11CardSum + 11;
+                    if (cardarray[num3].value == 1||cardarray[num2].value == 1||cardarray[num].value == 1) {
+                        ace11CardSum = cardarray[num].value + cardarray[num3].value +cardarray[num2].value +10;
                     }
                     keepCardSum3=true;
                 }
@@ -575,7 +578,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value + cardarray[num0000].value;
                     fourthDealerCard = true;
                     if (!dealerPrint3) {
-                        System.out.println("3."+cardarray[num00].value + "+" + cardarray[num0].value + "+" + cardarray[num000].value + "+" + cardarray[num0000].value + "=" + dealerSum);
+                        //System.out.println("3."+cardarray[num00].value + "+" + cardarray[num0].value + "+" + cardarray[num000].value + "+" + cardarray[num0000].value + "=" + dealerSum);
                         dealerPrint3 = true;
                     }
                 }
@@ -585,7 +588,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value + cardarray[num0000].value+cardarray[num00000].value;
                     fifthDealerCard = true;
                     if (!dealerPrint4) {
-                        System.out.println("4."+cardarray[num00].value + "+" + cardarray[num0].value + "+" + cardarray[num000].value + "+" + cardarray[num0000].value + "+" + cardarray[num00000].value+ "=" + dealerSum);
+                       // System.out.println("4."+cardarray[num00].value + "+" + cardarray[num0].value + "+" + cardarray[num000].value + "+" + cardarray[num0000].value + "+" + cardarray[num00000].value+ "=" + dealerSum);
                         dealerPrint4 = true;
                     }
                 }
@@ -651,9 +654,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             g.fillRect(cardarray[num8].xpos, cardarray[num8].ypos, cardarray[num8].width, cardarray[num8].height + 3);
             g.fillRect(cardarray[num9].xpos, cardarray[num9].ypos, cardarray[num9].width, cardarray[num9].height + 3);
             g.fillRect(cardarray[num10].xpos, cardarray[num10].ypos, cardarray[num10].width, cardarray[num10].height + 3);
-            g.fillRect(320,605,85,85);
+            g.fillRect(320,610,85,85);
             g.setColor(new Color(250, 0, 0));
-            g.fillRect(325,610,75,75);
+            g.fillRect(325,615,75,75);
             g.setColor(new Color(255, 255, 255));
             g.drawImage(aceOfHeartsImage, cardarray[0].xpos, cardarray[0].ypos, cardarray[0].width, cardarray[0].height, null);
             g.drawImage(aceOfSpadesImage, cardarray[1].xpos, cardarray[1].ypos, cardarray[1].width, cardarray[1].height, null);
@@ -708,9 +711,13 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             g.drawImage(kingOfDiamondsImage, cardarray[50].xpos, cardarray[50].ypos, cardarray[50].width, cardarray[50].height, null);
             g.drawImage(kingOfHeartsImage, cardarray[51].xpos, cardarray[51].ypos, cardarray[51].width, cardarray[51].height, null);
             g.setFont(new Font("Arial",Font.BOLD,40));
-            g.drawString("Hit",335,657);
+            g.drawString("Hit",335,667);
             if (done){
                 g.drawString(result,600, 200);
+                g.drawString("Press R to restart", 10, 100);
+            }
+            if (!done){
+                g.drawString("Press return to stay", 10, 100);
             }
             if (!print) {
                 g.drawString("you have " + cardarray[num].value + "+" + cardarray[num2].value + "=" + cardSum, 10, 200);
@@ -881,7 +888,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println(e.getX()+","+e.getY());
-        if (e.getX()>=320&& e.getX()<=405&&e.getY()>=605&&e.getY()<=690){
+        if (e.getX()>=320&& e.getX()<=405&&e.getY()>=610&&e.getY()<=695){
             if(hit2&&!hit3){
                 hit3=true;
             }
