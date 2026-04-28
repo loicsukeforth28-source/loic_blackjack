@@ -547,9 +547,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 if (!firstDealerSum) {
                     dealerSum = cardarray[num0].value + cardarray[num00].value;
                     if (cardarray[num00].value==1){
-                        System.out.println("before"+aceDealerSum);
                         aceDealerSum = dealerSum+10;
-                        System.out.println("after"+aceDealerSum);
                     } else aceDealerSum=aceDealerSum+cardarray[num00].value;
                     firstDealerSum=true;
                 }
@@ -613,16 +611,16 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                             result="Blackjack! You Win!";
                         }
                         else if (finalSum > finalDealerSum && finalSum < 22) {
-                            result = "You Win (i guess)";
+                            result = "You Win!";
                         }
                        else if (finalSum < finalDealerSum&&finalDealerSum<22) {
-                            result = "you lose haha bozo";
+                            result = "You Lose!";
                         }
                        else if (finalSum == finalDealerSum) {
-                            result = "you broke (even)";
+                            result = "You Broke Even";
                         }
                        else if (finalDealerSum > 21 && finalSum < 22) {
-                            result = "You Win (i guess)";
+                            result = "You Win!";
                        }
                         done = true;
                      }
@@ -887,7 +885,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println(e.getX()+","+e.getY());
+  //      System.out.println(e.getX()+","+e.getY());
         if (e.getX()>=320&& e.getX()<=405&&e.getY()>=610&&e.getY()<=695){
             if(hit2&&!hit3){
                 hit3=true;
