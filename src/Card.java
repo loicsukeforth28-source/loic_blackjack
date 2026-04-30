@@ -12,7 +12,6 @@ public class Card {
     public boolean firstCard;
     public boolean secondCard;
     public boolean thirdCard;
-
     public Card( int pvalue) {
         value = pvalue;
         width = 60;

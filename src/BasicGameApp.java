@@ -478,7 +478,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     finalSum = ace11CardSum;
                 } else finalSum = cardSum;
                 if (finalSum > 21) {
-                    result = "you lose haha bozo";
+                    result = "You Lose!";
                 }
                 if(ace11CardSum==21){
                     result = "Blackjack! You Win!";
@@ -501,10 +501,10 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 if (!print) {
                     if (cardSum > 21) {
                         result="you lose haha bozo";
-                        System.out.println(result);
+                       // System.out.println(result);
                         done=true;
                     }
-                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
+                   // System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "=" + cardSum);
                     print = true;
                     hit1used = true;
                 }
@@ -519,10 +519,10 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 if (!print2) {
                     if (cardSum > 21) {
                         result="you lose haha bozo";
-                        System.out.println(result);
+                       // System.out.println(result);
                         done=true;
                     }
-                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+                   // System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
                     print2 = true;
                     hit2used = true;
                 }
@@ -532,9 +532,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 cardSum = cardarray[num].value + cardarray[num2].value + cardarray[num3].value + cardarray[num4].value + cardarray[num5].value;
                 if (!print3) {
                     if (cardSum > 21) {
-                        System.out.println("you lose haha bozo");
+                       // System.out.println("you lose haha bozo");
                     }
-                    System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
+                  //  System.out.println(cardarray[num].value + "+" + cardarray[num2].value + "+" + cardarray[num3].value + "+" + cardarray[num4].value + "=" + cardSum);
                     print3 = true;
                     hit3=false;
                     hit3used = true;
@@ -552,7 +552,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     firstDealerSum=true;
                 }
                 if (!dealerPrint) {
-                    System.out.println("1."+cardarray[num0].value + "+" + cardarray[num00].value + "=" + dealerSum);
+                 //   System.out.println("1."+cardarray[num0].value + "+" + cardarray[num00].value + "=" + dealerSum);
                     dealerPrint = true;
                 }
                 if (aceDealerSum<18&&dealerSum < 17 && !thirdDealerCard) {
@@ -566,12 +566,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     }
                     thirdDealerCard = true;
                     if (!dealerPrint2) {
-                        System.out.println("2."+ cardarray[num0].value + "+" + cardarray[num00].value + "+" + cardarray[num000].value + "=" + dealerSum);
+                      //  System.out.println("2."+ cardarray[num0].value + "+" + cardarray[num00].value + "+" + cardarray[num000].value + "=" + dealerSum);
                         dealerPrint2 = true;
                     }
                 }
                 if (aceDealerSum<18&&dealerSum < 17 && thirdDealerCard && !fourthDealerCard) {
-                    System.out.println(dealerSum);
+                    //System.out.println(dealerSum);
                     cardarray[num0000].play(650, 10);
                     dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value + cardarray[num0000].value;
                     fourthDealerCard = true;
@@ -581,7 +581,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                     }
                 }
                 if (aceDealerSum<18&&dealerSum < 17 && !fifthDealerCard && fourthDealerCard) {
-                    System.out.println(dealerSum);
+                   // System.out.println(dealerSum);
                     cardarray[num00000].play(725, 10);
                     dealerSum = cardarray[num00].value + cardarray[num0].value + cardarray[num000].value + cardarray[num0000].value+cardarray[num00000].value;
                     fifthDealerCard = true;
@@ -634,7 +634,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         private void render () {
             Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
             g.clearRect(0, 0, WIDTH, HEIGHT);
-            g.setColor(new Color(0, 150, 0));
+            g.setColor(new Color(0, 135, 0, 216));
             g.fillRect(0, 0, WIDTH, HEIGHT);
             g.setColor(new Color(255, 255, 255));
             g.fillRect(cardarray[num0].xpos, cardarray[num0].ypos, cardarray[num0].width, cardarray[num0].height + 3);
@@ -757,7 +757,6 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             g.dispose();
             bufferStrategy.show();
         }
-
         //Pauses or sleeps the computer for the amount specified in milliseconds
         public void pause ( int time){
             try {
@@ -765,7 +764,6 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             } catch (InterruptedException e) {
             }
         }
-
         //Graphics setup method
         private void setUpGraphics () {
             frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
@@ -796,16 +794,11 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             canvas.addMouseListener(this);
             System.out.println("DONE graphic setup");
         }
-
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
-         //System.out.println(e.getKeyCode());
-
       if (e.getKeyCode()==82){
            cardSum=0;
            ace11CardSum=0;
@@ -871,18 +864,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             stay=true;
         }
     }
-
-
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
   //      System.out.println(e.getX()+","+e.getY());
@@ -896,21 +883,13 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             hit1=true;
         }
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
-
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 }
-
-
